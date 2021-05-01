@@ -5,8 +5,8 @@ set(CMAKE_CXX_STANDARD 14)
 
 option(pMesh_BUILD_TEST  "Build test projects" ON)
 
-file(GLOB headers ${CMAKE_CURRENT_SOURCE_DIR}/include/pMesh/*.h)
-file(GLOB sources ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
+file(GLOB_RECURSE headers ${CMAKE_CURRENT_SOURCE_DIR}/include/pMesh/*.h)
+file(GLOB_RECURSE sources ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
 
 find_package(Boost COMPONENTS filesystem log REQUIRED)
 find_package(Eigen3 3.3 REQUIRED NO_MODULE)
