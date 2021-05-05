@@ -24,7 +24,18 @@ namespace pMesh {
 
         std::vector<std::set<size_t>> vertices_kring;
         std::vector<std::set<size_t>> cells_kring;
+
+    public:
+        /**
+         * Get v-pair via cell-pair
+         * @param cell_a
+         * @param cell_b
+         * @return
+         */
+        Edge get_edge(size_t cell_a, size_t cell_b);
     };
 };
+
+#include <pMesh/Mesh.impl>
 
 #endif //PMESH_MESH_H

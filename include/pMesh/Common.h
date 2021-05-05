@@ -37,6 +37,9 @@ namespace pMesh {
     using QuadrangleCell = Cell<4>;
     using HexahedronCell = Cell<8>;
 
+    // edge
+    typedef std::pair<size_t, size_t> Edge;
+
 };
 
 #endif //PMESH_COMMON_H

@@ -8,3 +8,9 @@
  * ------------------------------------
 **/
 
+#include <pMesh/operators/TriangleMeshOperators.h>
+
+void pMesh::Operator::compute_mesh_normals(Triangle3dMesh &mesh){
+
+}
+

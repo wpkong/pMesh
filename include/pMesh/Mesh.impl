@@ -1,0 +1,35 @@
+/**
+ * ------------------------------------
+ * @author: Weipeng Kong
+ * @date: 2021/5/5
+ * @email: yjxkwp@foxmail.com
+ * @site: https://x86.design
+ * @description: 
+ * ------------------------------------
+**/
+
+#ifndef PMESH_MESH_IMPL
+#define PMESH_MESH_IMPL
+
+#include <pMesh/Common.h>
+
+template<int VertexND, int CellND>
+pMesh::Edge pMesh::Mesh<VertexND, CellND>::get_edge(size_t cell_a, size_t cell_b) {
+    std::vector<int> edge;
+    std::set<int> shape1, shape2;
+    shape1.insert(cells[cell_a].begin(), cells[cell_a].end());
+    shape2.insert(cells[cell_b].begin(), cells[cell_b].end());
+    std::set_intersection(
+            shape1.begin(), shape1.end(),
+            shape2.begin(), shape2.end(),
+            std::inserter(edge, edge.begin())
+    );
+    if (edge.size() != 2)
+        return std::make_pair(-1, -1);
+    else {
+        if (edge[0] < edge[1]) return std::make_pair(edge[0], edge[1]);
+        else return std::make_pair(edge[1], edge[0]);
+    }
+}
+
+#endif //PMESH_MESH_IMPL

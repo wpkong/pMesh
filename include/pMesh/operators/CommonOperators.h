@@ -25,11 +25,15 @@ namespace pMesh::Operator{
     template<int VertexND, int CellND>
     void eliminate_redundant_vertices(Mesh<VertexND, CellND> &mesh);
 
+    template<int VertexND, int CellND>
+    void compute_krings(Mesh<VertexND, CellND> &mesh);
+
     /**
      * Make triangle vertex order regulated.
      * @param mesh
      */
     void regulate_cell_vertex_order(Triangle3dMesh &mesh, bool reverse=false);
+
 };
 
 // Implementations
