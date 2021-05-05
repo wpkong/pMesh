@@ -15,7 +15,7 @@
 #include <vector>
 
 namespace pMesh{
-    class Triangle3dMesh: public Mesh<Point3d, TriangleCell>{
+    class Triangle3dMesh: public Mesh<3, 3>{
     public:
         std::vector<Vector3d> cell_normals;
 

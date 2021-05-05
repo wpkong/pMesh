@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.19)
 project(pMesh)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 20)
 
 option(pMesh_BUILD_TEST  "Build test projects" ON)
 

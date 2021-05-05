@@ -1,0 +1,100 @@
+/**
+ * ------------------------------------
+ * @author: Weipeng Kong
+ * @date: 2021/5/5
+ * @email: yjxkwp@foxmail.com
+ * @site: https://x86.design
+ * @description: 
+ * ------------------------------------
+**/
+
+#ifndef PMESH_COMMONOPERATORS_IMPL
+#define PMESH_COMMONOPERATORS_IMPL
+
+#include <pMesh/Common.h>
+
+template<int VertexND, int CellND>
+void pMesh::Operator::eliminate_redundant_vertices(Mesh<VertexND, CellND> &mesh){
+    using std::vector;
+    using std::map;
+    auto old_points = mesh.vertices;
+    auto old_cells = mesh.cells;
+    mesh.vertices.clear();
+    mesh.cells.clear();
+    vector<vector<int>> triangles;
+    map<int, int> old_2_new, new_2_old;
+    for (auto &cell: old_cells) {
+        vector<int> new_cell;
+        for (auto p: cell) {
+            if (old_2_new.count(p) == 0) {
+                old_2_new[p] = mesh.vertices.size();
+                mesh.vertices.push_back(old_points[p]);
+            }
+            new_cell.push_back(old_2_new[p]);
+        }
+        mesh.cells.push_back(new_cell);
+    }
+    for(auto [o, n]: old_2_new){
+        new_2_old[n] = o;
+    }
+}
+
+void pMesh::Operator::regulate_cell_vertex_order(Triangle3dMesh &mesh, bool reverse){
+    int cnt = 0;
+    typedef std::pair<int, int> Edge;
+    typedef std::pair<int, Edge> node_type;
+    using std::vector;
+
+    std::deque<node_type> Q;
+
+    vector<bool> visited(mesh.cells.size(), false);
+
+    //BFS
+    for (int i = 0; i < mesh.cells.size(); ++i) {
+        if (visited[i]) continue;
+        visited[i] = true;
+
+        for(auto nt: this->neighbors[i]){
+            if(visited[nt]) continue;
+
+            Edge e = this->get_edge(i, nt);
+            assert(e.first != -1 and e.second != -1);
+            Q.emplace_back(nt, e);
+        }
+
+        while (not Q.empty()){
+            node_type node = Q.front();
+            Q.pop_front();
+
+            if(visited[node.first]) continue;
+            visited[node.first] = true;
+
+            // rev edges
+            for (int j = 0; j < 3; ++j) {
+                Edge re(this->mesh[node.first][j], this->mesh[node.first][(j+1)%3]);
+                if(re == node.second){  // 有边同向
+                    std::swap(this->mesh[node.first][j], this->mesh[node.first][(j+1)%3]);
+                    cnt++;
+                    break;
+                }
+            }
+
+            // 加入临边到队列
+            for(auto nt: this->neighbors[node.first]){
+                if(visited[nt]) continue;
+
+                Edge e = this->get_edge(node.first, nt);
+                assert(e.first != -1 and e.second != -1);
+                Q.emplace_back(nt, e);
+            }
+        }
+    }
+    BOOST_LOG_TRIVIAL(info) << "Regulated " << cnt << " triangles";
+    if(reverse){
+        for (int i = 0; i < this->mesh.size(); ++i) {
+            std::swap(this->mesh[i][0], this->mesh[i][1]);
+        }
+    }
+}
+
+#endif //PMESH_COMMONOPERATORS_IMPL

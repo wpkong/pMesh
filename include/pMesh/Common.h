@@ -12,12 +12,16 @@
 #define PMESH_COMMON_H
 
 #include <Eigen/Core>
+#include <vector>
+#include <set>
 
 namespace pMesh {
     // Points and vectors
     template<int N>
     using VectorNd = Eigen::Matrix<double, N, 1>;
-    using PointNd = VectorNd;
+
+    template<int N>
+    using PointNd = VectorNd<N>;
 
     using Vector3d = VectorNd<3>;
     using Point3d = VectorNd<3>;

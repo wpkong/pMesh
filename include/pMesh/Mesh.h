@@ -16,15 +16,14 @@
 #include <array>
 
 namespace pMesh {
-    template<class T_vertex, class T_cell>
+    template<int VertexND, int CellND>
     class Mesh {
     public:
-        std::vector<T_vertex> vertices;
-        std::vector<T_cell> cells;
+        std::vector<PointNd<VertexND>> vertices;
+        std::vector<Cell<CellND>> cells;
 
         std::vector<std::set<size_t>> vertices_kring;
-    public:
-        void regulate(bool reverse=false);
+        std::vector<std::set<size_t>> cells_kring;
     };
 };
 
