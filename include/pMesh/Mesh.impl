@@ -12,6 +12,48 @@
 #define PMESH_MESH_IMPL
 
 #include <pMesh/Common.h>
+#include <pMesh/Mesh.h>
+#include <map>
+
+
+template<int VertexND, int CellND>
+void pMesh::Mesh<VertexND, CellND>::inflate_krings() {
+    using std::map;
+    using std::vector;
+
+    this->cells_kring.clear();
+    this->vertices_kring.clear();
+
+    this->cells_kring.resize(this->cells.size());
+    this->vertices_kring.resize(this->vertices.size());
+
+    std::map<Edge, vector<int> > edge2cell;
+    for (int i = 0; i < this->cells.size(); ++i) {
+        const auto &cell = this->cells[i];
+        const int cell_vn = cell.size();
+        for (int t = 0; t < cell_vn; ++t) {
+            int a = cell[t];
+            int b = cell[(t + 1) % cell_vn];
+            Edge edge(std::min(a, b), std::max(a, b));
+            edge2cell[edge].push_back(i);
+
+            this->vertices_kring[a].insert(b);
+            this->vertices_kring[b].insert(a);
+        }
+    }
+    for (int i = 0; i < this->cells.size(); ++i) {
+        const auto &cell = this->cells[i];
+        for (int t = 0; t < 3; ++t) {
+            int a = cell[t];
+            int b = cell[(t + 1) % 3];
+            Edge edge(std::min(a, b), std::max(a, b));
+            auto &ts = edge2cell[edge];
+            this->cells_kring[i].insert(ts.begin(), ts.end());
+        }
+        this->cells_kring[i].erase(i);
+    }
+}
+
 
 template<int VertexND, int CellND>
 pMesh::Edge pMesh::Mesh<VertexND, CellND>::get_edge(size_t cell_a, size_t cell_b) {
@@ -31,5 +73,6 @@ pMesh::Edge pMesh::Mesh<VertexND, CellND>::get_edge(size_t cell_a, size_t cell_b
         else return std::make_pair(edge[1], edge[0]);
     }
 }
+
 
 #endif //PMESH_MESH_IMPL

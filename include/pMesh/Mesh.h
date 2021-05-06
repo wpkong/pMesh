@@ -27,6 +27,12 @@ namespace pMesh {
 
     public:
         /**
+         * Calculate vertices_kring and cells_kring
+         */
+        void inflate_krings();
+
+    public:
+        /**
          * Get v-pair via cell-pair
          * @param cell_a
          * @param cell_b

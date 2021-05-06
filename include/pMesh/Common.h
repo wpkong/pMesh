@@ -30,8 +30,8 @@ namespace pMesh {
     using Point2d = PointNd<2>;
 
     // meshes
-    template<int T>
-    using Cell = std::array<size_t, T>;
+    template<int CellND>
+    using Cell = std::array<size_t, CellND>;
     using TriangleCell = Cell<3>;
     using TetrehedronCell = Cell<4>;
     using QuadrangleCell = Cell<4>;
