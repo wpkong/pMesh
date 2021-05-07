@@ -23,7 +23,7 @@ namespace pMesh{
         ~CellVerticesOrderRegulator() override = default;
 
     public:
-        void operator()(Triangle3dMesh &mesh);
+        void operator()(Triangle3dMesh &mesh) override;
     };
 
 }

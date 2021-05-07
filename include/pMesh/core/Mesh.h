@@ -12,15 +12,21 @@
 #define PMESH_MESH_H
 
 #include <pMesh/Common.h>
+#include <pMesh/core/Null.h>
+#include <pMesh/core/Vertex.h>
+#include <pMesh/core/Cell.h>
 #include <vector>
 #include <array>
 
 namespace pMesh {
-    template<int VertexND, int CellND>
+    template<int VertexND,
+            int CellND,
+            class VertexTrait=Null::NullTrait,
+            class CellTrait=Null::NullTrait>
     class Mesh {
     public:
-        std::vector<PointNd<VertexND>> vertices;
-        std::vector<Cell<CellND>> cells;
+        std::vector<Vertex<VertexND, VertexTrait>> vertices;
+        std::vector<Cell<CellND, CellTrait>> cells;
 
         std::vector<std::set<size_t>> vertices_kring;
         std::vector<std::set<size_t>> cells_kring;
@@ -28,6 +34,7 @@ namespace pMesh {
     public:
         /**
          * Calculate vertices_kring and cells_kring
+         * TODO: use half edge structures
          */
         void inflate_krings();
 
@@ -42,6 +49,6 @@ namespace pMesh {
     };
 };
 
-#include <pMesh/Mesh.impl>
+#include <pMesh/core/Mesh.impl>
 
 #endif //PMESH_MESH_H

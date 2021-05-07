@@ -1,17 +1,18 @@
 /**
  * ------------------------------------
  * @author: Weipeng Kong
- * @date: 2021/4/28
+ * @date: 2021/5/7
  * @email: yjxkwp@foxmail.com
  * @site: https://x86.design
  * @description: 
  * ------------------------------------
 **/
 
-#ifndef PMESH_POINT_H
-#define PMESH_POINT_H
+#ifndef PMESH_NULL_H
+#define PMESH_NULL_H
 
-#include <pMesh/Common>
+namespace pMesh::Null{
+    class NullTrait{};
+}
 
-
-#endif //PMESH_POINT_H
+#endif //PMESH_NULL_H

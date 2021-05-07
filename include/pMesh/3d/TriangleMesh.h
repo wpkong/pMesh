@@ -11,7 +11,7 @@
 #ifndef PMESH_TRIANGLEMESH_H
 #define PMESH_TRIANGLEMESH_H
 
-#include <pMesh/Mesh.h>
+#include <pMesh/core/Mesh.h>
 #include <vector>
 
 namespace pMesh{
@@ -19,17 +19,6 @@ namespace pMesh{
     public:
         std::vector<Vector3d> cell_normals;
 
-
-    public:
-        /**
-         * Calculate triangle cell normals
-         */
-        void calculate_cell_normals();
-
-        /**
-         * Regulate triangle normals
-         */
-        void regulate(bool reverse=false);
     };
 }
 

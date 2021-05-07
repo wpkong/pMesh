@@ -13,7 +13,7 @@
 
 #include <boost/test/unit_test.hpp>
 #include <boost/log/trivial.hpp>
-#include <pMesh/Mesh.h>
+#include <pMesh/core/Mesh.h>
 
 BOOST_AUTO_TEST_SUITE(test)
     BOOST_AUTO_TEST_CASE(test_1d) {

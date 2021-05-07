@@ -4,14 +4,14 @@
  * @date: 2021/5/6
  * @email: yjxkwp@foxmail.com
  * @site: https://x86.design
- * @description: 
+ * @description: Operator for mesh
  * ------------------------------------
 **/
 
 #ifndef PMESH_OPERATOR_H
 #define PMESH_OPERATOR_H
 
-#include <pMesh/Mesh.h>
+#include <pMesh/core/Mesh.h>
 
 namespace pMesh {
     class Operator {
@@ -22,7 +22,7 @@ namespace pMesh {
 
     public:
         template<int VertexND, int CellND>
-        virtual operator()(Mesh<VertexND, CellND> &mesh);
+        virtual operator()(Mesh<VertexND, CellND> &mesh) = 0;
     };
 }
 

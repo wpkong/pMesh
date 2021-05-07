@@ -12,7 +12,7 @@
 #define PMESH_MESH_IMPL
 
 #include <pMesh/Common.h>
-#include <pMesh/Mesh.h>
+#include <pMesh/Core/Mesh.h>
 #include <map>
 
 

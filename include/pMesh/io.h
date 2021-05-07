@@ -11,7 +11,7 @@
 #ifndef PMESH_IO_H
 #define PMESH_IO_H
 
-#include <pMesh/Mesh.h>
+#include <pMesh/core/Mesh.h>
 #include <pMesh/3d/TriangleMesh.h>
 #include <boost/filesystem.hpp>
 

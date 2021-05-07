@@ -1,24 +1,25 @@
 /**
  * ------------------------------------
  * @author: Weipeng Kong
- * @date: 2021/4/28
+ * @date: 2021/5/7
  * @email: yjxkwp@foxmail.com
  * @site: https://x86.design
  * @description: 
  * ------------------------------------
 **/
 
-#ifndef PMESH_FRAME_H
-#define PMESH_FRAME_H
+#ifndef PMESH_HALFEDGE_H
+#define PMESH_HALFEDGE_H
 
 #include <pMesh/Common.h>
 
 namespace pMesh{
-    class Frame{
-        Vector3d normal;
-        Vector3d binormal;
-        Vector3d direction;
+    class HalfEdge{
+    public:
+        size_t vertex_start;
+        size_t vertex_end;
+        
     };
 }
 
-#endif //PMESH_FRAME_H
+#endif //PMESH_HALFEDGE_H

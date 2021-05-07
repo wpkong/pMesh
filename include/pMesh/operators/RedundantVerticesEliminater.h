@@ -21,7 +21,7 @@ namespace pMesh{
 
     public:
         template<int VertexND, int CellND>
-        void operator()(Mesh<VertexND, CellND> &mesh);
+        void operator()(Mesh<VertexND, CellND> &mesh) override;
     };
 }
 

@@ -5,7 +5,10 @@ set(CMAKE_CXX_STANDARD 20)
 
 option(pMesh_BUILD_TEST  "Build test projects" ON)
 
-file(GLOB_RECURSE headers ${CMAKE_CURRENT_SOURCE_DIR}/include/pMesh/*.h)
+file(GLOB_RECURSE headers
+        ${CMAKE_CURRENT_SOURCE_DIR}/include/pMesh/*.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/include/pMesh/*.impl
+        )
 file(GLOB_RECURSE sources ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
 
 find_package(Boost COMPONENTS filesystem log REQUIRED)

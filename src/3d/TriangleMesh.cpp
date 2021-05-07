@@ -9,11 +9,3 @@
 **/
 
 #include <pMesh/3d/TriangleMesh.h>
-
-void pMesh::Triangle3dMesh::calculate_cell_normals() {
-
-}
-
-void pMesh::Triangle3dMesh::regulate(bool reverse) {
-
-}

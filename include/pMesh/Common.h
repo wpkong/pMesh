@@ -29,17 +29,8 @@ namespace pMesh {
     using Vector2d = VectorNd<2>;
     using Point2d = PointNd<2>;
 
-    // meshes
-    template<int CellND>
-    using Cell = std::array<size_t, CellND>;
-    using TriangleCell = Cell<3>;
-    using TetrehedronCell = Cell<4>;
-    using QuadrangleCell = Cell<4>;
-    using HexahedronCell = Cell<8>;
-
     // edge
     typedef std::pair<size_t, size_t> Edge;
-
 };
 
 #endif //PMESH_COMMON_H
