@@ -16,7 +16,10 @@
 pMesh::CellVerticesOrderRegulator::CellVerticesOrderRegulator(bool reverse): reverse(reverse) {}
 
 
-void pMesh::CellVerticesOrderRegulator::operator()(Triangle3dMesh &mesh) {
+template<class HalfEdgeTrait,
+        class VertexTrait,
+        class CellTrait>
+void pMesh::CellVerticesOrderRegulator::operator()(Triangle3dMesh<HalfEdgeTrait, VertexTrait, CellTrait> &mesh)
     int cnt = 0;
     typedef std::pair<int, Edge> node_type;
     using std::vector;

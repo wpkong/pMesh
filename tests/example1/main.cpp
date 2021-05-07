@@ -12,19 +12,11 @@
 #define BOOST_TEST_MAIN
 
 #include <boost/test/unit_test.hpp>
-#include <boost/log/trivial.hpp>
-#include <pMesh/core/Mesh.h>
+#include <pMesh/core/Decl.h>
+#include <pMesh/core/HalfEdge.h>
 
 BOOST_AUTO_TEST_SUITE(test)
     BOOST_AUTO_TEST_CASE(test_1d) {
-//        using namespace pMesh;
-        std::vector<int> encoded{6,2,7,3}, arr;
-        int first = 4;
-        arr.resize(encoded.size() + 1);
-        arr[0] = first;
-        for (int i = 0; i < encoded.size(); ++i) {
-            arr[i + 1] = encoded[i] ^ arr[i];
-            std::cout << arr[i + 1] << " | ";
-        }
+        pMesh::halfedge_sptr<3,3> prt(new pMesh::HalfEdge<3,3>);
     }
 BOOST_AUTO_TEST_SUITE_END()

@@ -12,10 +12,10 @@
 #define PMESH_MESH_IMPL
 
 #include <pMesh/Common.h>
-#include <pMesh/Core/Mesh.h>
+//#include <pMesh/Core/Mesh.h>
 #include <map>
 
-
+#if 0
 template<int VertexND, int CellND>
 void pMesh::Mesh<VertexND, CellND>::inflate_krings() {
     using std::map;
@@ -73,6 +73,8 @@ pMesh::Edge pMesh::Mesh<VertexND, CellND>::get_edge(size_t cell_a, size_t cell_b
         else return std::make_pair(edge[1], edge[0]);
     }
 }
+
+#endif
 
 
 #endif //PMESH_MESH_IMPL

@@ -12,7 +12,7 @@
 #define PMESH_MESH_H
 
 #include <pMesh/Common.h>
-#include <pMesh/core/Null.h>
+#include <pMesh/core/Trait.h>
 #include <pMesh/core/Vertex.h>
 #include <pMesh/core/Cell.h>
 #include <vector>
@@ -21,31 +21,21 @@
 namespace pMesh {
     template<int VertexND,
             int CellND,
-            class VertexTrait=Null::NullTrait,
-            class CellTrait=Null::NullTrait>
+            class HalfEdgeTrait=NullTrait,
+            class VertexTrait=NullTrait,
+            class CellTrait=NullTrait>
     class Mesh {
     public:
-        std::vector<Vertex<VertexND, VertexTrait>> vertices;
-        std::vector<Cell<CellND, CellTrait>> cells;
+        using VertexType = Vertex<VertexND, CellND, HalfEdgeTrait, VertexTrait, CellTrait>;
+        using CellType = Cell<VertexND, CellND, HalfEdgeTrait, VertexTrait, CellTrait>;
+        using HalfEdgeType = HalfEdge<VertexND, CellND, HalfEdgeTrait, VertexTrait, CellTrait>;
 
-        std::vector<std::set<size_t>> vertices_kring;
-        std::vector<std::set<size_t>> cells_kring;
-
-    public:
-        /**
-         * Calculate vertices_kring and cells_kring
-         * TODO: use half edge structures
-         */
-        void inflate_krings();
+        using vertex_sptr = std::shared_ptr<VertexType>;
+        using cell_sptr = std::shared_ptr<CellType>;
 
     public:
-        /**
-         * Get v-pair via cell-pair
-         * @param cell_a
-         * @param cell_b
-         * @return
-         */
-        Edge get_edge(size_t cell_a, size_t cell_b);
+        std::vector<vertex_sptr> vertices;
+        std::vector<cell_sptr> cells;
     };
 };
 

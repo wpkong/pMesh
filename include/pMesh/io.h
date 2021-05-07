@@ -12,7 +12,7 @@
 #define PMESH_IO_H
 
 #include <pMesh/core/Mesh.h>
-#include <pMesh/3d/TriangleMesh.h>
+#include <pMesh/meshes/TriangleMesh.h>
 #include <boost/filesystem.hpp>
 
 namespace pMesh{
@@ -23,22 +23,28 @@ namespace pMesh{
  * Read
  */
 namespace pMesh::io {
-    bool read_obj(Triangle3dMesh &mesh, const fs_path &path);
+    template<class HalfEdgeTrait, class VertexTrait, class CellTrait>
+    bool read_obj(Triangle3dMesh<HalfEdgeTrait, VertexTrait, CellTrait> &mesh, const fs_path &path);
 
-    bool read_stl(Triangle3dMesh &mesh, const fs_path &path);
+    template<class HalfEdgeTrait, class VertexTrait, class CellTrait>
+    bool read_stl(Triangle3dMesh<HalfEdgeTrait, VertexTrait, CellTrait> &mesh, const fs_path &path);
 
-    bool read_off(Triangle3dMesh &mesh, const fs_path &path);
+    template<class HalfEdgeTrait, class VertexTrait, class CellTrait>
+    bool read_off(Triangle3dMesh<HalfEdgeTrait, VertexTrait, CellTrait> &mesh, const fs_path &path);
 };
 
 /**
  * Write
  */
 namespace pMesh::io{
-    bool write_obj(Triangle3dMesh &mesh, const fs_path &path);
+    template<class HalfEdgeTrait, class VertexTrait, class CellTrait>
+    bool write_obj(Triangle3dMesh<HalfEdgeTrait, VertexTrait, CellTrait> &mesh, const fs_path &path);
 
-    bool write_stl(Triangle3dMesh &mesh, const fs_path &path);
+    template<class HalfEdgeTrait, class VertexTrait, class CellTrait>
+    bool write_stl(Triangle3dMesh<HalfEdgeTrait, VertexTrait, CellTrait> &mesh, const fs_path &path);
 
-    bool write_off(Triangle3dMesh &mesh, const fs_path &path);
+    template<class HalfEdgeTrait, class VertexTrait, class CellTrait>
+    bool write_off(Triangle3dMesh<HalfEdgeTrait, VertexTrait, CellTrait> &mesh, const fs_path &path);
 }
 
 

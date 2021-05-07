@@ -14,6 +14,7 @@
 #include <Eigen/Core>
 #include <vector>
 #include <set>
+#include <memory>
 
 namespace pMesh {
     // Points and vectors

@@ -15,9 +15,10 @@
 #include <vector>
 
 namespace pMesh{
-    class Triangle3dMesh: public Mesh<3, 3>{
-    public:
-        std::vector<Vector3d> cell_normals;
+    template<class HalfEdgeTrait=NullTrait,
+            class VertexTrait=NullTrait,
+            class CellTrait=NullTrait>
+    class Triangle3dMesh: public Mesh<3, 3, HalfEdgeTrait, VertexTrait, CellTrait>{
 
     };
 }

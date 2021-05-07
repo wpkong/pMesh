@@ -12,6 +12,7 @@
 #define PMESH_CELLVERTICESORDERREGULATOR_H
 
 #include <pMesh/operators/Operator.h>
+#include <pMesh/3d/TriangleMesh.h>
 
 namespace pMesh{
     class CellVerticesOrderRegulator: public Operator{
@@ -23,7 +24,10 @@ namespace pMesh{
         ~CellVerticesOrderRegulator() override = default;
 
     public:
-        void operator()(Triangle3dMesh &mesh) override;
+        template<class HalfEdgeTrait,
+                class VertexTrait,
+                class CellTrait>
+        void operator()(Triangle3dMesh<HalfEdgeTrait, VertexTrait, CellTrait> &mesh) override;
     };
 
 }

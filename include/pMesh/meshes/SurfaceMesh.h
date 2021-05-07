@@ -15,10 +15,13 @@
 #include <pMesh/core/Mesh.h>
 
 namespace pMesh{
-    template<int CellND>
-    class SurfaceMesh: public Mesh<3, CellND>{
-
+    template<int CellND, class HalfEdgeTrait=NullTrait,
+            class VertexTrait=NullTrait,
+            class CellTrait=NullTrait>
+    class SurfaceMesh: public Mesh<3, CellND, HalfEdgeTrait, VertexTrait, CellTrait>{
+    public:
     };
+
 }
 
 #endif //PMESH_SURFACEMESH_H

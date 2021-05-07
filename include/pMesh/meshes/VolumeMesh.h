@@ -11,9 +11,13 @@
 #ifndef PMESH_VOLUMEMESH_H
 #define PMESH_VOLUMEMESH_H
 
+#include <pMesh/core/Mesh.h>
+
 namespace pMesh{
-    template<int CellND>
-    class VolumeMesh: public Mesh<3, CellND>{
+    template<int CellND, class HalfEdgeTrait=NullTrait,
+            class VertexTrait=NullTrait,
+            class CellTrait=NullTrait>
+    class VolumeMesh: public Mesh<3, CellND, HalfEdgeTrait, VertexTrait, CellTrait>{
 
     };
 }

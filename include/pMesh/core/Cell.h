@@ -12,15 +12,26 @@
 #define PMESH_CELL_H
 
 #include <pMesh/Common.h>
-#include <pMesh/core/Null.h>
+#include <pMesh/core/Decl.h>
+#include <pMesh/core/Trait.h>
 
-namespace pMesh{
-    template<int CellND, class Trait=Null::NullTrait>
-    class Cell{
+namespace pMesh {
+    template<int VertexND,
+            int CellND,
+            class HalfEdgeTrait,
+            class VertexTrait,
+            class CellTrait>
+    class Cell {
         using Cell_Vertex_T = std::array<size_t, CellND>;
+        using halfedge_sptr_self = halfedge_wptr<VertexND, CellND, HalfEdgeTrait, VertexTrait, CellTrait>;
     public:
         Cell_Vertex_T vertices;
-        Trait trait;
+
+    public:
+        std::vector<halfedge_sptr_self> half_edges;
+
+    public:
+        CellTrait trait;
     };
 }
 
