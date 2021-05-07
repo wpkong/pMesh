@@ -22,17 +22,25 @@ namespace pMesh{
             class VertexTrait,
             class CellTrait>
     class HalfEdge{
-        using halfedge_wptr_self = halfedge_wptr<VertexND, CellND, HalfEdgeTrait, VertexTrait, CellTrait>;
-        using cell_wptr_self = cell_wptr<VertexND, CellND, HalfEdgeTrait, VertexTrait, CellTrait>;
+    public:
+        using VertexType = Vertex<VertexND, CellND, HalfEdgeTrait, VertexTrait, CellTrait>;
+        using CellType = Cell<VertexND, CellND, HalfEdgeTrait, VertexTrait, CellTrait>;
+        using EdgeType = Edge<VertexND, CellND, HalfEdgeTrait, VertexTrait, CellTrait>;
+        using HalfEdgeType = HalfEdge<VertexND, CellND, HalfEdgeTrait, VertexTrait, CellTrait>;
+        using MeshType = Mesh<VertexND, CellND, HalfEdgeTrait, VertexTrait, CellTrait>;
+
+    public:
+        using halfedge_wptr = std::weak_ptr<HalfEdgeType>;
+        using cell_wptr = std::weak_ptr<CellType>;
     public:
         size_t vertex_start;
         size_t vertex_end;
     public:
-        halfedge_wptr_self opposite;
-        halfedge_wptr_self next;
-        halfedge_wptr_self prev;
+        halfedge_wptr opposite;
+        halfedge_wptr next;
+        halfedge_wptr prev;
     public:
-        cell_wptr_self cell;
+        cell_wptr cell;
 
     public:
         HalfEdgeTrait trait;

@@ -25,6 +25,6 @@ namespace pMesh{
     };
 }
 
-#include <pMesh/operators/RedundantVerticesEliminater.impl>
+#include <pMesh/operators/RedundantVerticesEliminater_impl.h>
 
 #endif //PMESH_REDUNDANTVERTICESELIMINATER_H

@@ -19,7 +19,14 @@ namespace pMesh{
             class VertexTrait=NullTrait,
             class CellTrait=NullTrait>
     class SurfaceMesh: public Mesh<3, CellND, HalfEdgeTrait, VertexTrait, CellTrait>{
+        using VertexType = Vertex<3, CellND, HalfEdgeTrait, VertexTrait, CellTrait>;
+        using CellType = Cell<3, CellND, HalfEdgeTrait, VertexTrait, CellTrait>;
+        using EdgeType = Edge<3, CellND, HalfEdgeTrait, VertexTrait, CellTrait>;
+        using HalfEdgeType = HalfEdge<3, CellND, HalfEdgeTrait, VertexTrait, CellTrait>;
+        using MeshType = Mesh<3, CellND, HalfEdgeTrait, VertexTrait, CellTrait>;
+
     public:
+        void inflate_half_edge_datastructure();
     };
 
 }

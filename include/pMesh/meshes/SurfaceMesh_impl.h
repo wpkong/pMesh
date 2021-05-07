@@ -12,7 +12,8 @@
 #define PMESH_SURFACEMESH_IMPL
 
 #include <pMesh/meshes/SurfaceMesh.h>
-
+#include <pMesh/core/HalfEdge.h>
+#include <pMesh/core/Edge.h>
 
 template<int CellND, class HalfEdgeTrait, class VertexTrait, class CellTrait>
 void pMesh::SurfaceMesh<CellND, HalfEdgeTrait, VertexTrait, CellTrait>::inflate_half_edge_datastructure() {
@@ -23,9 +24,10 @@ void pMesh::SurfaceMesh<CellND, HalfEdgeTrait, VertexTrait, CellTrait>::inflate_
 
     for (int cell_id = 0; cell_id < this->cells.size(); ++cell_id) {
         auto cell = this->cells[cell_id];
+        std::shared_ptr<CellType> cell_p = std::make_shared<CellType>();
         for (int v_ind = 0; v_ind < cell->vertices.size(); ++v_ind) {
-            HalfEdgeType he;
-            
+            std::shared_ptr<EdgeType> edge_p = std::make_shared<EdgeType>();
+
         }
     }
 }

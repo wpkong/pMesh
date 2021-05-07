@@ -1,15 +1,15 @@
 /**
  * ------------------------------------
  * @author: Weipeng Kong
- * @date: 2021/5/7
+ * @date: 2021/5/8
  * @email: yjxkwp@foxmail.com
  * @site: https://x86.design
  * @description: 
  * ------------------------------------
 **/
 
-#ifndef PMESH_VERTEX_H
-#define PMESH_VERTEX_H
+#ifndef PMESH_EDGE_H
+#define PMESH_EDGE_H
 
 #include <pMesh/Common.h>
 #include <pMesh/core/Trait.h>
@@ -18,10 +18,10 @@
 namespace pMesh{
     template<int VertexND,
             int CellND,
-            class HalfEdgeTrait,
-            class VertexTrait,
-            class CellTrait>
-    class Vertex{
+            class HalfEdgeTrait=NullTrait,
+            class VertexTrait=NullTrait,
+            class CellTrait=NullTrait>
+    class Edge{
     public:
         using VertexType = Vertex<VertexND, CellND, HalfEdgeTrait, VertexTrait, CellTrait>;
         using CellType = Cell<VertexND, CellND, HalfEdgeTrait, VertexTrait, CellTrait>;
@@ -30,10 +30,10 @@ namespace pMesh{
         using MeshType = Mesh<VertexND, CellND, HalfEdgeTrait, VertexTrait, CellTrait>;
 
     public:
-        PointNd<VertexND> coordinate;
-        VectorNd<VertexND> normal;
-        VertexTrait trait;
+        typedef std::weak_ptr<HalfEdgeType> halfedge_ptr;
+    public:
+        std::pair<halfedge_ptr, halfedge_ptr> halfedge_pair;
     };
 }
 
-#endif //PMESH_VERTEX_H
+#endif //PMESH_EDGE_H

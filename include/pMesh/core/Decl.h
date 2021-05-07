@@ -19,21 +19,48 @@ namespace pMesh{
             class HalfEdgeTrait = NullTrait,
             class VertexTrait = NullTrait,
             class CellTrait = NullTrait>
+    class Mesh;
+}
+
+namespace pMesh{
+    template<int VertexND,
+            int CellND,
+            class HalfEdgeTrait = NullTrait,
+            class VertexTrait = NullTrait,
+            class CellTrait = NullTrait>
+    class Edge;
+}
+
+namespace pMesh{
+    template<int VertexND,
+            int CellND,
+            class HalfEdgeTrait = NullTrait,
+            class VertexTrait = NullTrait,
+            class CellTrait = NullTrait>
+    class Vertex;
+}
+
+namespace pMesh{
+    template<int VertexND,
+            int CellND,
+            class HalfEdgeTrait = NullTrait,
+            class VertexTrait = NullTrait,
+            class CellTrait = NullTrait>
     class HalfEdge;
-
-    template<int VertexND,
-            int CellND,
-            class HalfEdgeTrait = NullTrait,
-            class VertexTrait = NullTrait,
-            class CellTrait = NullTrait>
-    using halfedge_sptr = std::shared_ptr<HalfEdge<VertexND, CellND, HalfEdgeTrait, VertexTrait, CellTrait>> ;
-
-    template<int VertexND,
-            int CellND,
-            class HalfEdgeTrait = NullTrait,
-            class VertexTrait = NullTrait,
-            class CellTrait = NullTrait>
-    using halfedge_wptr = std::weak_ptr<HalfEdge<VertexND, CellND, HalfEdgeTrait, VertexTrait, CellTrait>> ;
+//
+//    template<int VertexND,
+//            int CellND,
+//            class HalfEdgeTrait = NullTrait,
+//            class VertexTrait = NullTrait,
+//            class CellTrait = NullTrait>
+//    using halfedge_sptr = std::shared_ptr<HalfEdge<VertexND, CellND, HalfEdgeTrait, VertexTrait, CellTrait>> ;
+//
+//    template<int VertexND,
+//            int CellND,
+//            class HalfEdgeTrait = NullTrait,
+//            class VertexTrait = NullTrait,
+//            class CellTrait = NullTrait>
+//    using halfedge_wptr = std::weak_ptr<HalfEdge<VertexND, CellND, HalfEdgeTrait, VertexTrait, CellTrait>> ;
 }
 
 namespace pMesh{
@@ -43,20 +70,20 @@ namespace pMesh{
             class VertexTrait,
             class CellTrait>
     class Cell;
-
-    template<int VertexND,
-            int CellND,
-            class HalfEdgeTrait,
-            class VertexTrait,
-            class CellTrait>
-    using cell_sptr = std::shared_ptr<Cell<VertexND, CellND, HalfEdgeTrait, VertexTrait, CellTrait>>;
-
-    template<int VertexND,
-            int CellND,
-            class HalfEdgeTrait,
-            class VertexTrait,
-            class CellTrait>
-    using cell_wptr = std::weak_ptr<Cell<VertexND, CellND, HalfEdgeTrait, VertexTrait, CellTrait>>;
+//
+//    template<int VertexND,
+//            int CellND,
+//            class HalfEdgeTrait,
+//            class VertexTrait,
+//            class CellTrait>
+//    using cell_sptr = std::shared_ptr<Cell<VertexND, CellND, HalfEdgeTrait, VertexTrait, CellTrait>>;
+//
+//    template<int VertexND,
+//            int CellND,
+//            class HalfEdgeTrait,
+//            class VertexTrait,
+//            class CellTrait>
+//    using cell_wptr = std::weak_ptr<Cell<VertexND, CellND, HalfEdgeTrait, VertexTrait, CellTrait>>;
 }
 
 #endif //PMESH_DECL_H

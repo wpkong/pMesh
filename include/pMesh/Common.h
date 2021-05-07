@@ -29,9 +29,6 @@ namespace pMesh {
 
     using Vector2d = VectorNd<2>;
     using Point2d = PointNd<2>;
-
-    // edge
-    typedef std::pair<size_t, size_t> Edge;
 };
 
 #endif //PMESH_COMMON_H

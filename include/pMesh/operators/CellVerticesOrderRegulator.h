@@ -32,6 +32,6 @@ namespace pMesh{
 
 }
 
-#include <pMesh/operators/CellVerticesOrderRegulator.impl>
+#include <pMesh/operators/CellVerticesOrderRegulator_impl.h>
 
 #endif //PMESH_CELLVERTICESORDERREGULATOR_H
