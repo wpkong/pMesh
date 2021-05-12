@@ -20,7 +20,7 @@ namespace pMesh {
         int id = -1;
 
     public:
-        std::vector<std::vector<VertexHandle>> vertices;
+        std::vector<VertexHandle> vertices;
 
     public:
         std::vector<HalfEdgeHandle> half_edges;

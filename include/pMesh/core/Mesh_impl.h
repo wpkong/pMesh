@@ -80,8 +80,10 @@ build_half_edge_structure() {
         int he_n = cell.attr.half_edges.size();
         for (int i = 0; i < he_n; ++i){
             auto he = cell.attr.half_edges[i];
-            half_edge(he).prev = half_edge(cell.attr.half_edges[(i + he_n - 1) % he_n]).id;
-            half_edge(he).next = half_edge(cell.attr.half_edges[(i + he_n + 1) % he_n]).id;
+            auto prev_i = cell.attr.half_edges[(i + he_n - 1) % he_n];
+            auto next_i = cell.attr.half_edges[(i + he_n + 1) % he_n];
+            half_edge(he).prev = half_edge(prev_i).id;
+            half_edge(he).next = half_edge(next_i).id;
         }
     }
 }
