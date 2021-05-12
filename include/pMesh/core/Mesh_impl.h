@@ -12,69 +12,78 @@
 #define PMESH_MESH_IMPL
 
 #include <pMesh/Common.h>
-//#include <pMesh/Core/Mesh.h>
+#include <pMesh/core/Mesh.h>
+#include <boost/assert.hpp>
 #include <map>
 
-#if 0
-template<int VertexND, int CellND>
-void pMesh::Mesh<VertexND, CellND>::inflate_krings() {
-    using std::map;
-    using std::vector;
+template<class VertexExtraData,
+        class HalfEdgeExtraData,
+        class EdgeExtraData,
+        class CellExtraData>
+void pMesh::Mesh<VertexExtraData, HalfEdgeExtraData, EdgeExtraData, CellExtraData>::
+build_half_edge_structure() {
+    this->half_edges.clear();
+    this->edges.clear();
 
-    this->cells_kring.clear();
-    this->vertices_kring.clear();
+    std::map<std::pair<int, int>, int> edge_map;  // <min, max>, idx
 
-    this->cells_kring.resize(this->cells.size());
-    this->vertices_kring.resize(this->vertices.size());
+    for (size_t i = 0; i < this->vertices.size(); ++i) {
+        auto vertex = this->vertices[i];
+        vertex.attr.id = i;
+        vertex.attr.half_edge_in.clear();
+        vertex.attr.half_edge_out.clear();
+    }
 
-    std::map<Edge, vector<int> > edge2cell;
-    for (int i = 0; i < this->cells.size(); ++i) {
-        const auto &cell = this->cells[i];
-        const int cell_vn = cell.size();
-        for (int t = 0; t < cell_vn; ++t) {
-            int a = cell[t];
-            int b = cell[(t + 1) % cell_vn];
-            Edge edge(std::min(a, b), std::max(a, b));
-            edge2cell[edge].push_back(i);
+    for (size_t i = 0; i < this->cells.size(); ++i) {
+        auto cell = this->cells[i];
+        cell.attr.half_edges.clear();
+        cell.attr.id = i;
+        for (int j = 0; j < cell.attr.vertices.size(); ++j) {
+            int a = cell.attr.vertices[j];
+            int b = cell.attr.vertices[(j + 1) % cell.attr.vertices.size()];
 
-            this->vertices_kring[a].insert(b);
-            this->vertices_kring[b].insert(a);
+            HalfEdge he;
+            he.id = this->half_edges.size();
+            he.cell = cell.attr.id;
+            he.vertex_start = a;
+            he.vertex_end = b;
+
+            std::pair<int, int> edge_pair(std::min(a, b), std::max(a, b));
+            auto edge_fd = edge_map.find(edge_pair);
+            Edge *e_ptr;
+            if(edge_fd == edge_map.end()){
+                Edge e;
+                e.va = edge_pair.first;
+                e.vb = edge_pair.second;
+                e.id = this->edges.size();
+                // update
+                this->edges.push_back(e);
+                edge_map[edge_pair] = e.id;
+                e_ptr = &(this->edges.back());
+                e_ptr->halfedge_pair.first = he.id;
+
+            }else{
+                e_ptr = &(this->edges[*edge_fd]);
+                BOOST_ASSERT_MSG(e_ptr->halfedge_pair.second.id() == -1,
+                                 "Invalid mesh: more than 2 half edges share one edge.");
+                e_ptr->halfedge_pair.second = he.id;
+            }
+            he.edge = e_ptr->id;
+            vertex(a).half_edge_out.emplace_back(he.id);
+            vertex(b).half_edge_in.emplace_back(he.id);
+            cell.attr.half_edges.emplace_back(he.id);
+
+            // update
+            this->half_edges.push_back(he);
+        }
+
+        int he_n = cell.attr.half_edges.size();
+        for (int i = 0; i < he_n; ++i){
+            auto he = cell.attr.half_edges[i];
+            half_edge(he).prev = half_edge(cell.attr.half_edges[(i + he_n - 1) % he_n]).id;
+            half_edge(he).next = half_edge(cell.attr.half_edges[(i + he_n + 1) % he_n]).id;
         }
     }
-    for (int i = 0; i < this->cells.size(); ++i) {
-        const auto &cell = this->cells[i];
-        for (int t = 0; t < 3; ++t) {
-            int a = cell[t];
-            int b = cell[(t + 1) % 3];
-            Edge edge(std::min(a, b), std::max(a, b));
-            auto &ts = edge2cell[edge];
-            this->cells_kring[i].insert(ts.begin(), ts.end());
-        }
-        this->cells_kring[i].erase(i);
-    }
 }
-
-
-template<int VertexND, int CellND>
-pMesh::Edge pMesh::Mesh<VertexND, CellND>::get_edge(size_t cell_a, size_t cell_b) {
-    std::vector<int> edge;
-    std::set<int> shape1, shape2;
-    shape1.insert(cells[cell_a].begin(), cells[cell_a].end());
-    shape2.insert(cells[cell_b].begin(), cells[cell_b].end());
-    std::set_intersection(
-            shape1.begin(), shape1.end(),
-            shape2.begin(), shape2.end(),
-            std::inserter(edge, edge.begin())
-    );
-    if (edge.size() != 2)
-        return std::make_pair(-1, -1);
-    else {
-        if (edge[0] < edge[1]) return std::make_pair(edge[0], edge[1]);
-        else return std::make_pair(edge[1], edge[0]);
-    }
-}
-
-#endif
-
 
 #endif //PMESH_MESH_IMPL

@@ -12,27 +12,19 @@
 #define PMESH_EDGE_H
 
 #include <pMesh/Common.h>
-#include <pMesh/core/Trait.h>
+#include <pMesh/core/ExtraData.h>
 #include <pMesh/core/Decl.h>
+#include <pMesh/core/Handle.h>
 
 namespace pMesh{
-    template<int VertexND,
-            int CellND,
-            class HalfEdgeTrait=NullTrait,
-            class VertexTrait=NullTrait,
-            class CellTrait=NullTrait>
     class Edge{
     public:
-        using VertexType = Vertex<VertexND, CellND, HalfEdgeTrait, VertexTrait, CellTrait>;
-        using CellType = Cell<VertexND, CellND, HalfEdgeTrait, VertexTrait, CellTrait>;
-        using EdgeType = Edge<VertexND, CellND, HalfEdgeTrait, VertexTrait, CellTrait>;
-        using HalfEdgeType = HalfEdge<VertexND, CellND, HalfEdgeTrait, VertexTrait, CellTrait>;
-        using MeshType = Mesh<VertexND, CellND, HalfEdgeTrait, VertexTrait, CellTrait>;
+        int id = -1;
 
     public:
-        typedef std::weak_ptr<HalfEdgeType> halfedge_ptr;
-    public:
-        std::pair<halfedge_ptr, halfedge_ptr> halfedge_pair;
+        VertexHandle va, vb;
+
+        std::pair<EdgeHandle, EdgeHandle> halfedge_pair;
     };
 }
 

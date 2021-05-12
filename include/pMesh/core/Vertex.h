@@ -12,27 +12,21 @@
 #define PMESH_VERTEX_H
 
 #include <pMesh/Common.h>
-#include <pMesh/core/Trait.h>
+#include <pMesh/core/ExtraData.h>
 #include <pMesh/core/Decl.h>
+#include <pMesh/core/Handle.h>
 
 namespace pMesh{
-    template<int VertexND,
-            int CellND,
-            class HalfEdgeTrait,
-            class VertexTrait,
-            class CellTrait>
     class Vertex{
     public:
-        using VertexType = Vertex<VertexND, CellND, HalfEdgeTrait, VertexTrait, CellTrait>;
-        using CellType = Cell<VertexND, CellND, HalfEdgeTrait, VertexTrait, CellTrait>;
-        using EdgeType = Edge<VertexND, CellND, HalfEdgeTrait, VertexTrait, CellTrait>;
-        using HalfEdgeType = HalfEdge<VertexND, CellND, HalfEdgeTrait, VertexTrait, CellTrait>;
-        using MeshType = Mesh<VertexND, CellND, HalfEdgeTrait, VertexTrait, CellTrait>;
+        int id = -1;
 
     public:
-        PointNd<VertexND> coordinate;
-        VectorNd<VertexND> normal;
-        VertexTrait trait;
+        Point3d coordinate;
+        Vector3d normal;
+    public:
+        std::vector<HalfEdgeHandle> half_edge_in;
+        std::vector<HalfEdgeHandle> half_edge_out;
     };
 }
 

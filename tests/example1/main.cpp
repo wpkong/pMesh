@@ -17,6 +17,6 @@
 
 BOOST_AUTO_TEST_SUITE(test)
     BOOST_AUTO_TEST_CASE(test_1d) {
-        pMesh::halfedge_sptr<3,3> prt(new pMesh::HalfEdge<3,3>);
+
     }
 BOOST_AUTO_TEST_SUITE_END()
