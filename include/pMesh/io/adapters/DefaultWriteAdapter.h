@@ -8,8 +8,8 @@
  * ------------------------------------
 **/
 
-#ifndef PMESH_DEFAULTREADADAPTER_H
-#define PMESH_DEFAULTREADADAPTER_H
+#ifndef PMESH_DEFAULTWRITERADAPTER_H
+#define PMESH_DEFAULTWRITERADAPTER_H
 
 #include <pMesh/io/adapters/WriteAdapter.h>
 #include <pMesh/core/Mesh.h>
@@ -24,8 +24,8 @@ namespace pMesh::io {
         typedef Mesh<VertexExtraData, HalfEdgeExtraData, EdgeExtraData, CellExtraData> MeshType;
         MeshType &mesh;
 
-        std::vector<MeshType::VertexField>::const_iterator v_it;
-        std::vector<MeshType::CellField>::const_iterator c_it;
+        typename std::vector<typename MeshType::VertexField>::const_iterator v_it;
+        typename std::vector<typename MeshType::CellField>::const_iterator c_it;
     public:
         explicit DefaultWriteAdapter(MeshType &mesh) : mesh(mesh) {}
 
@@ -51,7 +51,11 @@ namespace pMesh::io {
 
         bool request_cell(std::vector<int> &c) override {
             if(c_it == this->mesh.cells.end()) return false;
-            c = c_it->attr.vertices;
+            c.clear();
+            for(const VertexHandle &v: c_it->attr.vertices){
+                c.push_back(v.id());
+            }
+            c_it++;
             return true;
         };
 
@@ -61,4 +65,4 @@ namespace pMesh::io {
     };
 }
 
-#endif //PMESH_DEFAULTREADADAPTER_H
+#endif //PMESH_DEFAULTWRITERADAPTER_H

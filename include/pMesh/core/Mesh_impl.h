@@ -35,7 +35,7 @@ build_half_edge_structure() {
     }
 
     for (size_t i = 0; i < this->cells.size(); ++i) {
-        auto cell = this->cells[i];
+        auto &cell = this->cells[i];
         cell.attr.half_edges.clear();
         cell.attr.id = i;
         for (int j = 0; j < cell.attr.vertices.size(); ++j) {
@@ -72,7 +72,6 @@ build_half_edge_structure() {
             vertex(VertexHandle{a}).half_edge_out.emplace_back(he.id);
             vertex(VertexHandle{b}).half_edge_in.emplace_back(he.id);
             cell.attr.half_edges.emplace_back(he.id);
-
             // update
             this->half_edges.emplace_back(he);
         }

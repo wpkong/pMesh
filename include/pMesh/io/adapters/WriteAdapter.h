@@ -27,6 +27,14 @@ namespace pMesh::io{
         virtual bool request_cell(std::vector<int> &c) = 0;
 
         virtual void end() {}
+
+        WriteAdapter &base() {
+            return *this;
+        }
+
+        WriteAdapter &operator()() {
+            return *this;
+        }
     };
 }
 

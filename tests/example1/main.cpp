@@ -19,10 +19,13 @@
 #include <pMesh/io/adapters/DefaultReadAdapter.h>
 
 BOOST_AUTO_TEST_SUITE(test)
+
     BOOST_AUTO_TEST_CASE(test_1d) {
         pMesh::Mesh m;
-        pMesh::io::STLReader reader("/Users/kwp/Projects/Porous/models/insole/model.stl");
-        pMesh::io::DefaultReadAdapter(m);
-        BOOST_LOG_TRIVIAL(debug) << m.v_size();
+        pMesh::io::STLReader("/Users/kwp/Projects/Porous/models/insole/model.stl") >>
+                                                                                   pMesh::io::DefaultReadAdapter(m)();
+        BOOST_LOG_TRIVIAL(debug) << "Loaded points: " << m.v_size();
+        BOOST_LOG_TRIVIAL(debug) << "Loaded cells: " << m.c_size();
     }
+
 BOOST_AUTO_TEST_SUITE_END()

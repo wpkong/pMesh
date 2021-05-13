@@ -15,30 +15,31 @@
 #include <pMesh/core/Mesh.h>
 
 namespace pMesh::io {
-    template<class VertexExtraData,
-            class HalfEdgeExtraData,
-            class EdgeExtraData,
-            class CellExtraData>
+    template<class VertexExtraData=BaseVertexExtraData,
+            class HalfEdgeExtraData=BaseHalfEdgeExtraData,
+            class EdgeExtraData = BaseEdgeExtraData,
+            class CellExtraData = BaseCellExtraData>
     class DefaultReadAdapter : public ReadAdapter {
-    private:
+    public:
         typedef Mesh<VertexExtraData, HalfEdgeExtraData, EdgeExtraData, CellExtraData> MeshType;
+    protected:
         MeshType &mesh;
     public:
         explicit DefaultReadAdapter(MeshType &mesh) : mesh(mesh) {}
 
-        void start() override {
+        void start() {
             this->mesh.vertices.clear();
             this->mesh.half_edges.clear();
             this->mesh.edges.clear();
             this->mesh.cells.clear();
         }
 
-        void feed_vertex(const Point3d &v) override {
+        void feed_vertex(const Point3d &v) {
             int v_id = this->mesh.v_size();
             this->mesh.vertices.emplace_back(Vertex{.id = v_id, .coordinate = v});
         }
 
-        void feed_cell(const std::vector<int> &c) override {
+        void feed_cell(const std::vector<int> &c) {
             int c_id = this->mesh.c_size();
             Cell cell{.id = c_id};
             std::transform(c.begin(), c.end(), std::back_inserter(cell.vertices), [](int v){
@@ -47,7 +48,7 @@ namespace pMesh::io {
             this->mesh.cells.emplace_back(cell);
         }
 
-        void end() override {
+        void end() {
             this->mesh.build_half_edge_structure();
         }
     };

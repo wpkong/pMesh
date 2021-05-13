@@ -14,14 +14,13 @@
 #include <pMesh/io/readers/BaseReader.h>
 
 namespace pMesh::io {
-    class OBJReader: public BaseReader{
+    class OBJReader : public BaseReader {
         const fs_path path;
     public:
         explicit OBJReader(const fs_path &path);
 
     public:
-        bool operator >> (ReadAdapter &adapter) override;
+        bool operator>>(ReadAdapter &adapter) override;
     };
 }
-
 #endif //PMESH_OBJREADER_H

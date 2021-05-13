@@ -43,7 +43,7 @@ namespace pMesh {
         Vertex &vertex(const VertexHandle &handle) { return vertices.at(handle.id()).attr; };
         HalfEdge &half_edge(const HalfEdgeHandle &handle) { return half_edges.at(handle.id()).attr; }
         Edge &edge(const EdgeHandle &handle) { return edges.at(handle.id()).attr; }
-        Cell &cell(const CellHandle &handle){ return cells.at(handle.id()).attr; }
+        Cell &cell(const CellHandle &handle){ return cells.at(handle.id()).attr;}
 
     public:
         VertexExtraData &vertex_data(const VertexHandle &handle) { return vertices.at(handle.id()).extra; };

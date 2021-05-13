@@ -16,13 +16,21 @@
 namespace pMesh::io {
     class ReadAdapter {
     public:
-        virtual void start(){};
+        virtual void start() {};
 
-        virtual void end(){};
+        virtual void end() {};
 
         virtual void feed_vertex(const Point3d &v) = 0;
 
         virtual void feed_cell(const std::vector<int> &c) = 0;
+
+        ReadAdapter &base() {
+            return *this;
+        }
+
+        ReadAdapter &operator()() {
+            return *this;
+        }
     };
 }
 
