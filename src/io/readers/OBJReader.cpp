@@ -37,7 +37,7 @@
 
 pMesh::io::OBJReader::OBJReader(const fs_path &path) : path(path){}
 
-void pMesh::io::OBJReader::operator>>(IOAdapter &adapter) {
+bool pMesh::io::OBJReader::operator>>(ReadAdapter &adapter) {
     adapter.start();
     vtkSmartPointer<vtkAbstractPolyDataReader> reader = vtkNew<vtkOBJReader>();
     reader->SetFileName(path.c_str());
@@ -59,4 +59,5 @@ void pMesh::io::OBJReader::operator>>(IOAdapter &adapter) {
         adapter.feed_cell(c);
     }
     adapter.end();
+    return true;
 }

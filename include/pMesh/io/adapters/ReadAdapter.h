@@ -8,13 +8,13 @@
  * ------------------------------------
 **/
 
-#ifndef PMESH_IOADAPTER_H
-#define PMESH_IOADAPTER_H
+#ifndef PMESH_READADAPTER_H
+#define PMESH_READADAPTER_H
 
 #include <pMesh/Common.h>
 
 namespace pMesh::io {
-    class IOAdapter {
+    class ReadAdapter {
     public:
         virtual void start(){};
 
@@ -26,4 +26,4 @@ namespace pMesh::io {
     };
 }
 
-#endif //PMESH_IOADAPTER_H
+#endif //PMESH_READADAPTER_H

@@ -40,16 +40,16 @@ namespace pMesh {
         std::vector<CellField> cells;
 
     public:
-        Vertex &vertex(const VertexHandle &handle) { return vertices.at(handle).field; };
-        HalfEdge &half_edge(const HalfEdgeHandle &handle) { return half_edges.at(handle).field; }
-        Edge &edge(const EdgeHandle &handle) { return edges.at(handle).field; }
-        Cell &cell(const CellHandle &handle){ return cells.at(handle).field; }
+        Vertex &vertex(const VertexHandle &handle) { return vertices.at(handle.id()).attr; };
+        HalfEdge &half_edge(const HalfEdgeHandle &handle) { return half_edges.at(handle.id()).attr; }
+        Edge &edge(const EdgeHandle &handle) { return edges.at(handle.id()).attr; }
+        Cell &cell(const CellHandle &handle){ return cells.at(handle.id()).attr; }
 
     public:
-        VertexExtraData &vertex_data(const VertexHandle &handle) { return vertices.at(handle).extra; };
-        HalfEdgeExtraData &half_edge_data(const HalfEdgeHandle &handle) { return half_edges.at(handle).extra; }
-        EdgeExtraData &edge_data(const EdgeHandle &handle) { return edges.at(handle).extra; }
-        CellExtraData &cell_data(const CellHandle &handle){ return cells.at(handle).extra; }
+        VertexExtraData &vertex_data(const VertexHandle &handle) { return vertices.at(handle.id()).extra; };
+        HalfEdgeExtraData &half_edge_data(const HalfEdgeHandle &handle) { return half_edges.at(handle.id()).extra; }
+        EdgeExtraData &edge_data(const EdgeHandle &handle) { return edges.at(handle.id()).extra; }
+        CellExtraData &cell_data(const CellHandle &handle){ return cells.at(handle.id()).extra; }
 
     public:
         Vertex &attr(const VertexHandle &handle) { return vertices.at(handle.id()).attr; };
@@ -58,10 +58,10 @@ namespace pMesh {
         Cell &attr(const CellHandle &handle){ return cells.at(handle.id()).attr; }
 
     public:
-        VertexExtraData &data(const VertexHandle &handle) { return vertices.at(handle).extra; }
-        HalfEdgeExtraData &data(const HalfEdgeHandle &handle) { return half_edges.at(handle).extra; }
-        EdgeExtraData &data(const EdgeHandle &handle){ return edges.at(handle).extra; }
-        CellExtraData &data(const CellHandle &handle){ return cells.at(handle).extra; }
+        VertexExtraData &data(const VertexHandle &handle) { return vertices.at(handle.id()).extra; }
+        HalfEdgeExtraData &data(const HalfEdgeHandle &handle) { return half_edges.at(handle.id()).extra; }
+        EdgeExtraData &data(const EdgeHandle &handle){ return edges.at(handle.id()).extra; }
+        CellExtraData &data(const CellHandle &handle){ return cells.at(handle.id()).extra; }
 
     public:
         size_t v_size(){ return vertices.size(); }

@@ -15,12 +15,12 @@
 #include <vector>
 
 namespace pMesh{
-    template<class HalfEdgeTrait=NullTrait,
-            class VertexTrait=NullTrait,
-            class CellTrait=NullTrait>
-    class Triangle3dMesh: public Mesh<3, 3, HalfEdgeTrait, VertexTrait, CellTrait>{
-
-    };
+//    template<class HalfEdgeTrait=NullTrait,
+//            class VertexTrait=NullTrait,
+//            class CellTrait=NullTrait>
+//    class Triangle3dMesh: public Mesh<3, 3, HalfEdgeTrait, VertexTrait, CellTrait>{
+//
+//    };
 }
 
 #endif //PMESH_TRIANGLEMESH_H

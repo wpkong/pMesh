@@ -17,6 +17,7 @@
 
 namespace pMesh {
     class Cell {
+    public:
         int id = -1;
 
     public:

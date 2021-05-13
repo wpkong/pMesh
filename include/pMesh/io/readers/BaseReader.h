@@ -8,20 +8,20 @@
  * ------------------------------------
 **/
 
-#ifndef PMESH_MESHREADER_H
-#define PMESH_MESHREADER_H
+#ifndef PMESH_BASEREADER_H
+#define PMESH_BASEREADER_H
 
 #include <pMesh/Common.h>
-#include <pMesh/io/adapters/IOAdapter.h>
+#include <pMesh/io/adapters/ReadAdapter.h>
 #include <boost/filesystem.hpp>
 
 namespace pMesh::io{
     using fs_path = boost::filesystem::path;
-    class MeshReader{
-    public:
-        virtual operator >> (IOAdapter &adapter) = 0;
-    };
 
+    class BaseReader{
+    public:
+        virtual bool operator >> (ReadAdapter &adapter) = 0;
+    };
 }
 
-#endif //PMESH_MESHREADER_H
+#endif //PMESH_BASEREADER_H

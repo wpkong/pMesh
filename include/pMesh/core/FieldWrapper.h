@@ -19,6 +19,8 @@ namespace pMesh{
     struct FieldWrapper{
         Field attr;
         ExtraData extra;
+
+        explicit FieldWrapper(const Field &attr): attr(attr), extra(attr){}
     };
 
     template<class VertexExtraData>

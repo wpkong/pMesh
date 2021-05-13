@@ -8,10 +8,10 @@
  * ------------------------------------
 **/
 
-#ifndef PMESH_DEFAULTADAPTER_H
-#define PMESH_DEFAULTADAPTER_H
+#ifndef PMESH_DEFAULTREADADAPTER_H
+#define PMESH_DEFAULTREADADAPTER_H
 
-#include <pMesh/io/adapters/IOAdapter.h>
+#include <pMesh/io/adapters/ReadAdapter.h>
 #include <pMesh/core/Mesh.h>
 
 namespace pMesh::io {
@@ -19,10 +19,13 @@ namespace pMesh::io {
             class HalfEdgeExtraData,
             class EdgeExtraData,
             class CellExtraData>
-    class DefaultAdapter : public IOAdapter {
+    class DefaultReadAdapter : public ReadAdapter {
     private:
-        Mesh<VertexExtraData, HalfEdgeExtraData, EdgeExtraData, CellExtraData> &mesh;
+        typedef Mesh<VertexExtraData, HalfEdgeExtraData, EdgeExtraData, CellExtraData> MeshType;
+        MeshType &mesh;
     public:
+        explicit DefaultReadAdapter(MeshType &mesh) : mesh(mesh) {}
+
         void start() override {
             this->mesh.vertices.clear();
             this->mesh.half_edges.clear();
@@ -32,12 +35,16 @@ namespace pMesh::io {
 
         void feed_vertex(const Point3d &v) override {
             int v_id = this->mesh.v_size();
-            this->mesh.vertices.emplace_back({.id = v_id, .coordinate = v});
+            this->mesh.vertices.emplace_back(Vertex{.id = v_id, .coordinate = v});
         }
 
         void feed_cell(const std::vector<int> &c) override {
             int c_id = this->mesh.c_size();
-            this->mesh.cells.emplace_back({.id = c_id, .vertices = c});
+            Cell cell{.id = c_id};
+            std::transform(c.begin(), c.end(), std::back_inserter(cell.vertices), [](int v){
+                return VertexHandle(v);
+            });
+            this->mesh.cells.emplace_back(cell);
         }
 
         void end() override {
@@ -46,4 +53,4 @@ namespace pMesh::io {
     };
 }
 
-#endif //PMESH_DEFAULTADAPTER_H
+#endif //PMESH_DEFAULTREADADAPTER_H

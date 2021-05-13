@@ -8,7 +8,8 @@
  * ------------------------------------
 **/
 
-#include <pMesh/io/readers/VTKReader.h>
+
+#include <pMesh/io/readers/STLReader.h>
 
 #include <vtkActor.h>
 #include <vtkNamedColors.h>
@@ -23,7 +24,7 @@
 #include <vtkRenderWindowInteractor.h>
 #include <vtkRenderer.h>
 #include <vtkSTLReader.h>
-#include <vtkSTLWriter.h>
+#include <vtkOBJReader.h>
 #include <vtkCellArray.h>
 #include <vtkNew.h>
 #include <vtkPolygon.h>
@@ -33,11 +34,12 @@
 #include <vtkUnstructuredGridWriter.h>
 #include <vtkUnstructuredGridReader.h>
 
-pMesh::io::VTKReader::VTKReader(const fs_path &path) : path(path){}
 
-bool pMesh::io::VTKReader::operator>>(ReadAdapter &adapter) {
+pMesh::io::STLReader::STLReader(const fs_path &path) : path(path){}
+
+bool pMesh::io::STLReader::operator>>(ReadAdapter &adapter) {
     adapter.start();
-    vtkNew<vtkUnstructuredGridReader> reader;
+    vtkSmartPointer<vtkAbstractPolyDataReader> reader = vtkNew<vtkSTLReader>();
     reader->SetFileName(path.c_str());
     reader->Update();
     auto data = reader->GetOutput();

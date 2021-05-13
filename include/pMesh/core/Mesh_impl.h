@@ -39,8 +39,8 @@ build_half_edge_structure() {
         cell.attr.half_edges.clear();
         cell.attr.id = i;
         for (int j = 0; j < cell.attr.vertices.size(); ++j) {
-            int a = cell.attr.vertices[j];
-            int b = cell.attr.vertices[(j + 1) % cell.attr.vertices.size()];
+            int a = cell.attr.vertices[j].id();
+            int b = cell.attr.vertices[(j + 1) % cell.attr.vertices.size()].id();
 
             HalfEdge he;
             he.id = this->half_edges.size();
@@ -57,24 +57,24 @@ build_half_edge_structure() {
                 e.vb = edge_pair.second;
                 e.id = this->edges.size();
                 // update
-                this->edges.push_back(e);
+                this->edges.emplace_back(e);
                 edge_map[edge_pair] = e.id;
-                e_ptr = &(this->edges.back());
+                e_ptr = &(this->edges.back().attr);
                 e_ptr->halfedge_pair.first = he.id;
 
             }else{
-                e_ptr = &(this->edges[*edge_fd]);
+                e_ptr = &(this->edges[edge_fd->second].attr);
                 BOOST_ASSERT_MSG(e_ptr->halfedge_pair.second.id() == -1,
                                  "Invalid mesh: more than 2 half edges share one edge.");
                 e_ptr->halfedge_pair.second = he.id;
             }
             he.edge = e_ptr->id;
-            vertex(a).half_edge_out.emplace_back(he.id);
-            vertex(b).half_edge_in.emplace_back(he.id);
+            vertex(VertexHandle{a}).half_edge_out.emplace_back(he.id);
+            vertex(VertexHandle{b}).half_edge_in.emplace_back(he.id);
             cell.attr.half_edges.emplace_back(he.id);
 
             // update
-            this->half_edges.push_back(he);
+            this->half_edges.emplace_back(he);
         }
 
         int he_n = cell.attr.half_edges.size();

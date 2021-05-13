@@ -11,16 +11,16 @@
 #ifndef PMESH_OBJREADER_H
 #define PMESH_OBJREADER_H
 
-#include <pMesh/io/readers/MeshReader.h>
+#include <pMesh/io/readers/BaseReader.h>
 
 namespace pMesh::io {
-    class OBJReader: public MeshReader{
+    class OBJReader: public BaseReader{
         const fs_path path;
     public:
         explicit OBJReader(const fs_path &path);
 
     public:
-        void operator >> (IOAdapter &adapter);
+        bool operator >> (ReadAdapter &adapter) override;
     };
 }
 

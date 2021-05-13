@@ -54,7 +54,7 @@ namespace pMesh {
 
         Handle& operator=(const Handle &handle) = default;
 
-        explicit operator int() const {
+        virtual explicit operator int() const {
             return index;
         }
     };
@@ -69,6 +69,10 @@ namespace pMesh{
             this->index = index;
             return *this;
         }
+
+        explicit operator int() const override {
+            return index;
+        }
     };
 
     class HalfEdgeHandle: public Handle{
@@ -78,6 +82,10 @@ namespace pMesh{
         HalfEdgeHandle &operator=(int index) final {
             this->index = index;
             return *this;
+        }
+
+        explicit operator int() const override {
+            return index;
         }
     };
 
@@ -89,6 +97,10 @@ namespace pMesh{
             this->index = index;
             return *this;
         }
+
+        explicit operator int() const override {
+            return index;
+        }
     };
 
     class CellHandle: public Handle{
@@ -98,6 +110,10 @@ namespace pMesh{
         CellHandle &operator=(int index) final {
             this->index = index;
             return *this;
+        }
+
+        explicit operator int() const override {
+            return index;
         }
     };
 }

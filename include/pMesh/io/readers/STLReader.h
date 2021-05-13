@@ -8,20 +8,20 @@
  * ------------------------------------
 **/
 
-#ifndef PMESH_VTKREADER_H
-#define PMESH_VTKREADER_H
+#ifndef PMESH_OBJREADER_H
+#define PMESH_OBJREADER_H
 
 #include <pMesh/io/readers/BaseReader.h>
 
 namespace pMesh::io {
-    class VTKReader: public BaseReader{
+    class STLReader: public BaseReader{
         const fs_path path;
     public:
-        explicit VTKReader(const fs_path &path);
+        explicit STLReader(const fs_path &path);
 
     public:
         bool operator >> (ReadAdapter &adapter) override;
     };
 }
 
-#endif //PMESH_VTKREADER_H
+#endif //PMESH_OBJREADER_H
