@@ -8,8 +8,8 @@
  * ------------------------------------
 **/
 
-#ifndef PMESH_DECL_H
-#define PMESH_DECL_H
+#ifndef PMESH_SURFACE_DECL_H
+#define PMESH_SURFACE_DECL_H
 
 #include <pMesh/Common.h>
 
@@ -23,4 +23,4 @@ namespace pMesh {
     class Cell;
 }
 
-#endif //PMESH_DECL_H
+#endif //PMESH_SURFACE_DECL_H

@@ -64,6 +64,8 @@ install(TARGETS pMesh ARCHIVE DESTINATION lib)
 if(pMesh_BUILD_TEST)
     add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/tests/example1)
     add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/tests/simplify_edges)
+    add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/tests/tri_tri_inter)
+
 endif()
 
 # tests
@@ -71,4 +73,5 @@ enable_testing()
 if(pMesh_BUILD_TEST)
     add_test(NAME example1 COMMAND $<TARGET_FILE:example1>)
     add_test(NAME simplify_edges COMMAND $<TARGET_FILE:simplify_edges>)
+    add_test(NAME tri_tri_inter COMMAND $<TARGET_FILE:tri_tri_inter>)
 endif()

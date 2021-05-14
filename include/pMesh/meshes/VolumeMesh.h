@@ -11,7 +11,7 @@
 #ifndef PMESH_VOLUMEMESH_H
 #define PMESH_VOLUMEMESH_H
 
-#include <pMesh/core/Mesh.h>
+#include <pMesh/core/Surface/Mesh.h>
 
 namespace pMesh{
     template<int CellND, class HalfEdgeTrait=NullTrait,

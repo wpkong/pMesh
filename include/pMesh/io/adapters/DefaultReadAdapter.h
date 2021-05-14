@@ -12,7 +12,7 @@
 #define PMESH_DEFAULTREADADAPTER_H
 
 #include <pMesh/io/adapters/ReadAdapter.h>
-#include <pMesh/core/Mesh.h>
+#include <pMesh/core/Surface/Mesh.h>
 
 namespace pMesh::io {
     template<class VertexExtraData=BaseVertexExtraData,

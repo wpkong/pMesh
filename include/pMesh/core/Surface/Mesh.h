@@ -8,15 +8,15 @@
  * ------------------------------------
 **/
 
-#ifndef PMESH_MESH_H
-#define PMESH_MESH_H
+#ifndef PMESH_SURFACE_MESH_H
+#define PMESH_SURFACE_MESH_H
 
 #include <pMesh/Common.h>
 #include <pMesh/core/ExtraData.h>
-#include <pMesh/core/Vertex.h>
-#include <pMesh/core/Cell.h>
-#include <pMesh/core/Edge.h>
-#include <pMesh/core/HalfEdge.h>
+#include <pMesh/core/Surface/Vertex.h>
+#include <pMesh/core/Surface/Cell.h>
+#include <pMesh/core/Surface/Edge.h>
+#include <pMesh/core/Surface/HalfEdge.h>
 #include <pMesh/core/FieldWrapper.h>
 #include <vector>
 #include <array>
@@ -73,6 +73,6 @@ namespace pMesh {
     };
 };
 
-#include <pMesh/core/Mesh_impl.h>
+#include <pMesh/core/Surface/Mesh_impl.h>
 
-#endif //PMESH_MESH_H
+#endif //PMESH_SURFACE_MESH_H

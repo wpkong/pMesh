@@ -11,7 +11,7 @@
 #ifndef PMESH_OPERATOR_H
 #define PMESH_OPERATOR_H
 
-#include <pMesh/core/Mesh.h>
+#include <pMesh/core/Surface/Mesh.h>
 
 namespace pMesh {
     class Operator {

@@ -13,7 +13,7 @@
 
 #include <boost/test/unit_test.hpp>
 #include <boost/log/trivial.hpp>
-#include <pMesh/core/Mesh.h>
+#include <pMesh/core/Surface/Mesh.h>
 #include <pMesh/core/ExtraData.h>
 #include <pMesh/io/readers/STLReader.h>
 #include <pMesh/io/adapters/DefaultReadAdapter.h>

@@ -8,26 +8,30 @@
  * ------------------------------------
 **/
 
-#ifndef PMESH_VERTEX_H
-#define PMESH_VERTEX_H
+#ifndef PMESH_SURFACE_HALFEDGE_H
+#define PMESH_SURFACE_HALFEDGE_H
 
 #include <pMesh/Common.h>
 #include <pMesh/core/ExtraData.h>
-#include <pMesh/core/Decl.h>
+#include <pMesh/core/Surface/Decl.h>
 #include <pMesh/core/Handle.h>
 
 namespace pMesh{
-    class Vertex{
+    class HalfEdge{
     public:
         int id = -1;
+    public:
+        VertexHandle vertex_start;
+        VertexHandle vertex_end;
+    public:
+        HalfEdgeHandle opposite;
+        HalfEdgeHandle next;
+        HalfEdgeHandle prev;
+        EdgeHandle edge;
 
     public:
-        Point3d coordinate;
-        Vector3d normal;
-    public:
-        std::vector<HalfEdgeHandle> half_edge_in;
-        std::vector<HalfEdgeHandle> half_edge_out;
+        CellHandle cell;
     };
 }
 
-#endif //PMESH_VERTEX_H
+#endif //PMESH_SURFACE_HALFEDGE_H

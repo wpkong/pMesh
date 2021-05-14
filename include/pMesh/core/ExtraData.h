@@ -11,7 +11,7 @@
 #ifndef PMESH_EXTRADATA_H
 #define PMESH_EXTRADATA_H
 
-#include <pMesh/core/Decl.h>
+#include <pMesh/core/Surface/Decl.h>
 #include <type_traits>
 
 namespace pMesh {

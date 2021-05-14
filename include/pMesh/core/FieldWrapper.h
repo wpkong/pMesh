@@ -11,7 +11,7 @@
 #ifndef PMESH_FIELDWRAPPER_H
 #define PMESH_FIELDWRAPPER_H
 
-#include <pMesh/core/Decl.h>
+#include <pMesh/core/Surface/Decl.h>
 #include <pMesh/core/ExtraData.h>
 
 namespace pMesh{

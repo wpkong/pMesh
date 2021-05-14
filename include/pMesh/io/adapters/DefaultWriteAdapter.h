@@ -12,7 +12,7 @@
 #define PMESH_DEFAULTWRITERADAPTER_H
 
 #include <pMesh/io/adapters/WriteAdapter.h>
-#include <pMesh/core/Mesh.h>
+#include <pMesh/core/Surface/Mesh.h>
 
 namespace pMesh::io {
     template<class VertexExtraData,

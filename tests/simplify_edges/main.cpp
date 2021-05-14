@@ -16,7 +16,7 @@
 #include <pMesh/io/readers/BaseReader.h>
 #include <pMesh/io/readers/VTKReader.h>
 #include <pMesh/io/adapters/DefaultReadAdapter.h>
-#include <pMesh/core/Mesh.h>
+#include <pMesh/core/Surface/Mesh.h>
 #include <fstream>
 #include <sstream>
 #include "preprocess.h"

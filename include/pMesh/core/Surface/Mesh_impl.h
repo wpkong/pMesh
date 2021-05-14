@@ -8,11 +8,11 @@
  * ------------------------------------
 **/
 
-#ifndef PMESH_MESH_IMPL
-#define PMESH_MESH_IMPL
+#ifndef PMESH_SURFACE_MESH_IMPL
+#define PMESH_SURFACE_MESH_IMPL
 
 #include <pMesh/Common.h>
-#include <pMesh/core/Mesh.h>
+#include <pMesh/core/Surface/Mesh.h>
 #include <boost/assert.hpp>
 #include <map>
 
@@ -87,4 +87,4 @@ build_half_edge_structure() {
     }
 }
 
-#endif //PMESH_MESH_IMPL
+#endif //PMESH_SURFACE_MESH_IMPL

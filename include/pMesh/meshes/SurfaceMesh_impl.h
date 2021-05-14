@@ -12,8 +12,8 @@
 #define PMESH_SURFACEMESH_IMPL
 
 #include <pMesh/meshes/SurfaceMesh.h>
-#include <pMesh/core/HalfEdge.h>
-#include <pMesh/core/Edge.h>
+#include <pMesh/core/Surface/HalfEdge.h>
+#include <pMesh/core/Surface/Edge.h>
 
 template<int CellND, class HalfEdgeTrait, class VertexTrait, class CellTrait>
 void pMesh::SurfaceMesh<CellND, HalfEdgeTrait, VertexTrait, CellTrait>::inflate_half_edge_datastructure() {

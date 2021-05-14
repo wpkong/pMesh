@@ -11,7 +11,7 @@
 #ifndef PMESH_TRIANGLEMESH_H
 #define PMESH_TRIANGLEMESH_H
 
-#include <pMesh/core/Mesh.h>
+#include <pMesh/core/Surface/Mesh.h>
 #include <vector>
 
 namespace pMesh{

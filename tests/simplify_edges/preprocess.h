@@ -14,7 +14,7 @@
 #include <boost/test/unit_test.hpp>
 #include <boost/log/trivial.hpp>
 #include <utility>
-#include <pMesh/core/Mesh.h>
+#include <pMesh/core/Surface/Mesh.h>
 #include <pMesh/core/ExtraData.h>
 #include <pMesh/io/readers/BaseReader.h>
 #include <pMesh/io/adapters/DefaultReadAdapter.h>
@@ -86,10 +86,10 @@ namespace pMesh{
 
 void preprocess(){
     using namespace pMesh;
-    io::fs_path in_path = "/Users/kwp/Downloads/segments_info/segments_info.txt";
-    io::fs_path out_v_path = "/Users/kwp/Downloads/segments_info/segments_info_V.txt";
-    io::fs_path out_f_path = "/Users/kwp/Downloads/segments_info/segments_info_F.txt";
-    io::fs_path out_vtk_path = "/Users/kwp/Downloads/segments_info/segments_info.vtk";
+    io::fs_path in_path = "/Users/kwp/Downloads/voxel_info_test2/voxel_info_test2.txt";
+    io::fs_path out_v_path = "/Users/kwp/Downloads/voxel_info_test2/segments_info_V.txt";
+    io::fs_path out_f_path = "/Users/kwp/Downloads/voxel_info_test2/segments_info_F.txt";
+    io::fs_path out_vtk_path = "/Users/kwp/Downloads/voxel_info_test2/segments_info.vtk";
 
     Mesh m;
     EdgeFormatReader(in_path) >> io::DefaultReadAdapter(m)();
