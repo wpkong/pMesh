@@ -38,7 +38,7 @@ bool pMesh::io::VFReader::operator>>(pMesh::io::ReadAdapter &adapter) {
         while (ss >> v){
             c.push_back((int)v);
         }
-        adapter.feed_cell(c);
+        adapter.feed_collection(c);
     }
     adapter.end();
     return true;

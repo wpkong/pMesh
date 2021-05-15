@@ -54,7 +54,7 @@ bool pMesh::io::VTKReader::operator>>(ReadAdapter &adapter) {
         for(int j = 0; j < cell->GetNumberOfPoints(); ++j){
             c.push_back((int)cell->GetPointId(j));
         }
-        adapter.feed_cell(c);
+        adapter.feed_collection(c);
     }
     adapter.end();
     return true;

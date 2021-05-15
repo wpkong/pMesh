@@ -15,7 +15,7 @@
 #include <boost/log/trivial.hpp>
 #include <utility>
 #include <pMesh/core/Surface/Mesh.h>
-#include <pMesh/core/ExtraData.h>
+#include <pMesh/core/Common/BaseExtraData.h>
 #include <pMesh/io/readers/BaseReader.h>
 #include <pMesh/io/adapters/DefaultReadAdapter.h>
 #include <pMesh/io/adapters/DefaultWriteAdapter.h>
@@ -39,12 +39,12 @@ namespace pMesh{
 
         int get_p_id(const Point3d &p, pMesh::io::ReadAdapter &adapter){
             volatile int found = -1;
-//            #pragma omp parallel for shared(found)
-//            for (int i = 0; i < vertices.size(); ++i) {
-//                if(found != -1) continue;
-//                double dis = (vertices[i] - p).lpNorm<2>();
-//                if(approximate(dis) == 0) found = i;
-//            }
+            #pragma omp parallel for shared(found)
+            for (int i = 0; i < vertices.size(); ++i) {
+                if(found != -1) continue;
+                double dis = (vertices[i] - p).lpNorm<2>();
+                if(approximate(dis) == 0) found = i;
+            }
             if(found == -1){
                 vertices.push_back(p);
                 adapter.feed_vertex(p);
@@ -72,7 +72,7 @@ namespace pMesh{
 
                 std::pair<int, int> ppp(std::min(a, b), std::max(a, b));
                 if(this->edge_pairs.find(ppp) == this->edge_pairs.end()){
-                    adapter.feed_cell({a, b});
+                    adapter.feed_collection({a, b});
                     this->edge_pairs.insert(ppp);
                 }
             }
@@ -86,15 +86,15 @@ namespace pMesh{
 
 void preprocess(){
     using namespace pMesh;
-    io::fs_path in_path = "/Users/kwp/Downloads/voxel_info_test2/voxel_info_test2.txt";
-    io::fs_path out_v_path = "/Users/kwp/Downloads/voxel_info_test2/segments_info_V.txt";
-    io::fs_path out_f_path = "/Users/kwp/Downloads/voxel_info_test2/segments_info_F.txt";
-    io::fs_path out_vtk_path = "/Users/kwp/Downloads/voxel_info_test2/segments_info.vtk";
+    io::fs_path in_path = "/Users/kwp/Downloads/allms12307_info_test2/allms12307_info_test2.txt";
+    io::fs_path out_v_path = "/Users/kwp/Downloads/allms12307_info_test2/segments_info_V.txt";
+    io::fs_path out_f_path = "/Users/kwp/Downloads/allms12307_info_test2/segments_info_F.txt";
+    io::fs_path out_vtk_path = "/Users/kwp/Downloads/allms12307_info_test2/segments_info.vtk";
 
     Mesh m;
     EdgeFormatReader(in_path) >> io::DefaultReadAdapter(m)();
     BOOST_LOG_TRIVIAL(debug) << "Loaded points: " << m.v_size();
-    BOOST_LOG_TRIVIAL(debug) << "Loaded cells: " << m.c_size();
+    BOOST_LOG_TRIVIAL(debug) << "Loaded faces: " << m.f_size();
 
     io::VTKWriter(3, out_vtk_path) << io::DefaultWriteAdapter(m)();
     io::VFWriter(out_v_path, out_f_path) << io::DefaultWriteAdapter(m)();

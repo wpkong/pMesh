@@ -20,11 +20,11 @@ namespace pMesh::io{
 
         virtual size_t request_number_of_vertices() = 0;
 
-        virtual size_t request_number_of_cells() = 0;
+        virtual size_t request_number_of_collections() = 0;
 
         virtual bool request_vertex(Point3d &p) = 0;
 
-        virtual bool request_cell(std::vector<int> &c) = 0;
+        virtual bool request_collection(std::vector<int> &c) = 0;
 
         virtual void end() {}
 

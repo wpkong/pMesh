@@ -28,7 +28,7 @@ bool pMesh::io::VFWriter::operator<<(pMesh::io::WriteAdapter &adapter) {
     vfs.close();
 
     std::vector<int> c;
-    while (adapter.request_cell(c)){
+    while (adapter.request_collection(c)){
         for (int i : c) {
             ffs << i << " ";
         }

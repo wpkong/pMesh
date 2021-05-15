@@ -35,22 +35,22 @@ bool pMesh::io::VTKWriter::operator<<(pMesh::io::WriteAdapter &adapter) {
         }
         out << std::endl;
     }
-    size_t n_cells = adapter.request_number_of_cells();
+    size_t n_cells = adapter.request_number_of_collections();
 
     if (n_cells != 0) {
-        std::vector<int> cell;
-        adapter.request_cell(cell);
-        out << "CELLS " << n_cells << " " << n_cells * (cell.size() + 1) << std::endl;
-        // ---- first cell ----
-        out << cell.size();
-        for (auto v: cell) {
+        std::vector<int> collection;
+        adapter.request_collection(collection);
+        out << "CELLS " << n_cells << " " << n_cells * (collection.size() + 1) << std::endl;
+        // ---- first collection ----
+        out << collection.size();
+        for (auto v: collection) {
             out << " " << v;
         }
         out << std::endl;
         // --------------------
-        while (adapter.request_cell(cell)) {
-            out << cell.size();
-            for (auto v: cell) {
+        while (adapter.request_collection(collection)) {
+            out << collection.size();
+            for (auto v: collection) {
                 out << " " << v;
             }
             out << std::endl;

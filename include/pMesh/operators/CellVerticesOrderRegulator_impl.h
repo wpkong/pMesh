@@ -24,7 +24,7 @@ void pMesh::CellVerticesOrderRegulator::operator()(Triangle3dMesh<HalfEdgeTrait,
     typedef std::pair<int, Edge> node_type;
     using std::vector;
     std::deque<node_type> Q;
-    vector<bool> visited(mesh.cells.size(), false);
+    vector<bool> visited(mesh.faces.size(), false);
 
     //BFS
     for (int i = 0; i < mesh.cells.size(); ++i) {
@@ -50,7 +50,7 @@ void pMesh::CellVerticesOrderRegulator::operator()(Triangle3dMesh<HalfEdgeTrait,
 
             // rev edges
             for (int j = 0; j < 3; ++j) {
-                Edge re(mesh.cells[node.first][j], mesh.cells[node.first][(j+1)%3]);
+                Edge re(mesh.faces[node.first][j], mesh.faces[node.first][(j + 1) % 3]);
                 if(re == node.second){  // 有边同向
                     std::swap(mesh.cells[node.first][j], mesh.cells[node.first][(j+1)%3]);
                     cnt++;

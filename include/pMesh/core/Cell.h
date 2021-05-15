@@ -1,31 +1,35 @@
 /**
  * ------------------------------------
  * @author: Weipeng Kong
- * @date: 2021/5/8
+ * @date: 2021/5/15
  * @email: yjxkwp@foxmail.com
  * @site: https://x86.design
  * @description: 
  * ------------------------------------
 **/
 
-#ifndef PMESH_SURFACE_EDGE_H
-#define PMESH_SURFACE_EDGE_H
+#ifndef PMESH_CELL_H
+#define PMESH_CELL_H
 
 #include <pMesh/Common.h>
-#include <pMesh/core/ExtraData.h>
-#include <pMesh/core/Surface/Decl.h>
 #include <pMesh/core/Handle.h>
 
-namespace pMesh{
-    class Edge{
+namespace pMesh {
+    class BaseCell {
+    };
+}
+
+namespace pMesh::Volume {
+    class Cell : public BaseCell {
     public:
         int id = -1;
 
     public:
-        VertexHandle va, vb;
+        std::vector<VertexHandle> vertices;
 
-        std::pair<EdgeHandle, EdgeHandle> halfedge_pair;
+    public:
+        std::vector<HalfFaceHandle> half_edges;
     };
 }
 
-#endif //PMESH_SURFACE_EDGE_H
+#endif //PMESH_CELL_H

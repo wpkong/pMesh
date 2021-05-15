@@ -22,7 +22,7 @@ namespace pMesh::io {
 
         virtual void feed_vertex(const Point3d &v) = 0;
 
-        virtual void feed_cell(const std::vector<int> &c) = 0;
+        virtual void feed_collection(const std::vector<int> &c) = 0;
 
         ReadAdapter &base() {
             return *this;

@@ -18,9 +18,9 @@ void pMesh::RedundantVerticesEliminater::operator()(Mesh<VertexND, CellND> &mesh
     using std::vector;
     using std::map;
     auto old_points = mesh.vertices;
-    auto old_cells = mesh.cells;
+    auto old_cells = mesh.faces;
     mesh.vertices.clear();
-    mesh.cells.clear();
+    mesh.faces.clear();
     vector<vector<int>> triangles;
     map<int, int> old_2_new, new_2_old;
     for (auto &cell: old_cells) {
@@ -33,7 +33,7 @@ void pMesh::RedundantVerticesEliminater::operator()(Mesh<VertexND, CellND> &mesh
             }
             new_cell[i] = old_2_new[p];
         }
-        mesh.cells.push_back(new_cell);
+        mesh.faces.push_back(new_cell);
     }
     for(auto [o, n]: old_2_new){
         new_2_old[n] = o;

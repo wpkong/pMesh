@@ -13,7 +13,7 @@
 
 #include <boost/test/unit_test.hpp>
 #include <boost/log/trivial.hpp>
-#include <pMesh/core/Surface/Mesh.h>
+#include <pMesh/core/SurfaceMesh.h>
 #include <pMesh/core/ExtraData.h>
 #include <pMesh/io/readers/STLReader.h>
 #include <pMesh/io/adapters/DefaultReadAdapter.h>
@@ -21,11 +21,11 @@
 BOOST_AUTO_TEST_SUITE(test)
 
     BOOST_AUTO_TEST_CASE(test_1d) {
-        pMesh::Mesh m;
+        pMesh::SurfaceMesh m;
         pMesh::io::STLReader("/Users/kwp/Projects/Porous/models/insole/model.stl") >>
-                                                                                   pMesh::io::DefaultReadAdapter(m)();
+                                                                                   pMesh::io::DefaultSurfaceReadAdapter(m)();
         BOOST_LOG_TRIVIAL(debug) << "Loaded points: " << m.v_size();
-        BOOST_LOG_TRIVIAL(debug) << "Loaded cells: " << m.c_size();
+        BOOST_LOG_TRIVIAL(debug) << "Loaded faces: " << m.f_size();
     }
 
 BOOST_AUTO_TEST_SUITE_END()

@@ -43,24 +43,24 @@ BOOST_AUTO_TEST_SUITE(test)
         io::STLReader(shoe_path) >> BlockHalfEdgeReadAdapter(shoe)();
         io::STLReader(inter_path) >> BlockHalfEdgeReadAdapter(inter)();
 
-        BOOST_LOG_TRIVIAL(debug) << "[Shoe] Load " << shoe.v_size() << " vertices and " << shoe.c_size() << " cells";
-        BOOST_LOG_TRIVIAL(debug) << "[inter] Load " << inter.v_size() << " vertices and " << inter.c_size() << " cells";
+        BOOST_LOG_TRIVIAL(debug) << "[Shoe] Load " << shoe.v_size() << " vertices and " << shoe.f_size() << " faces";
+        BOOST_LOG_TRIVIAL(debug) << "[inter] Load " << inter.v_size() << " vertices and " << inter.f_size() << " faces";
 
-        int shoe_tri_n = shoe.c_size();
-        int inter_tri_n = inter.c_size();
+        int shoe_tri_n = shoe.f_size();
+        int inter_tri_n = inter.f_size();
 
         std::vector<std::vector<double>> lines;
         boost::progress_display progress(shoe_tri_n);
 
 #pragma omp parallel for
         for (int i = 0; i < shoe_tri_n; ++i) {
-            const auto &cell2 = shoe.cells[i].attr.vertices;
+            const auto &cell2 = shoe.faces[i].attr.vertices;
             const Point3d &p2 = shoe.vertices[cell2[0].id()].attr.coordinate,
                     &q2 = shoe.vertices[cell2[1].id()].attr.coordinate,
                     &r2 = shoe.vertices[cell2[2].id()].attr.coordinate;
 
             for (int j = 0; j < inter_tri_n; ++j) {
-                const auto &cell1 = inter.cells[j].attr.vertices;
+                const auto &cell1 = inter.faces[j].attr.vertices;
                 const Point3d &p1 = inter.vertices[cell1[0].id()].attr.coordinate,
                         &q1 = inter.vertices[cell1[1].id()].attr.coordinate,
                         &r1 = inter.vertices[cell1[2].id()].attr.coordinate;

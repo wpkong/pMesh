@@ -1,7 +1,7 @@
 /**
  * ------------------------------------
  * @author: Weipeng Kong
- * @date: 2021/5/12
+ * @date: 2021/5/15
  * @email: yjxkwp@foxmail.com
  * @site: https://x86.design
  * @description: 
@@ -11,48 +11,46 @@
 #ifndef PMESH_HANDLE_H
 #define PMESH_HANDLE_H
 
-#include <pMesh/Common.h>
-
-namespace pMesh {
-    class Handle {
+namespace pMesh{
+    class BaseHandle {
     protected:
         int index = -1;
 
     public:
-        explicit Handle(int index = -1) : index(index) {}
+        explicit BaseHandle(int index = -1) : index(index) {}
 
-        explicit Handle(const Handle &handle): index(handle.index) {}
+        explicit BaseHandle(const BaseHandle &handle): index(handle.index) {}
 
     public:
         int id() const { return index; }
 
     public:
-        bool operator==(const Handle &handle) const {
+        bool operator==(const BaseHandle &handle) const {
             return this->index == handle.index;
         }
 
-        bool operator<(const Handle &handle) const {
+        bool operator<(const BaseHandle &handle) const {
             return this->index < handle.index;
         }
 
-        bool operator<=(const Handle &handle) const {
+        bool operator<=(const BaseHandle &handle) const {
             return this->index <= handle.index;
         }
 
-        bool operator>(const Handle &handle) const {
+        bool operator>(const BaseHandle &handle) const {
             return this->index > handle.index;
         }
 
-        bool operator>=(const Handle &handle) const {
+        bool operator>=(const BaseHandle &handle) const {
             return this->index >= handle.index;
         }
 
-        virtual Handle &operator=(int index) {
+        virtual BaseHandle &operator=(int index) {
             this->index = index;
             return *this;
         }
 
-        Handle& operator=(const Handle &handle) = default;
+        BaseHandle& operator=(const BaseHandle &handle) = default;
 
         virtual explicit operator int() const {
             return index;
@@ -60,10 +58,10 @@ namespace pMesh {
     };
 }
 
-namespace pMesh{
-    class VertexHandle: public Handle{
+namespace pMesh::Surface{
+    class VertexHandle: public BaseHandle{
     public:
-        explicit VertexHandle(int index = -1): Handle(index){}
+        explicit VertexHandle(int index = -1): BaseHandle(index){}
 
         VertexHandle &operator=(int index) final {
             this->index = index;
@@ -75,9 +73,9 @@ namespace pMesh{
         }
     };
 
-    class HalfEdgeHandle: public Handle{
+    class HalfEdgeHandle: public BaseHandle{
     public:
-        explicit HalfEdgeHandle(int index = -1): Handle(index){}
+        explicit HalfEdgeHandle(int index = -1): BaseHandle(index){}
 
         HalfEdgeHandle &operator=(int index) final {
             this->index = index;
@@ -89,9 +87,9 @@ namespace pMesh{
         }
     };
 
-    class EdgeHandle: public Handle{
+    class EdgeHandle: public BaseHandle{
     public:
-        explicit EdgeHandle(int index = -1): Handle(index){}
+        explicit EdgeHandle(int index = -1): BaseHandle(index){}
 
         EdgeHandle &operator=(int index) final {
             this->index = index;
@@ -103,9 +101,68 @@ namespace pMesh{
         }
     };
 
-    class CellHandle: public Handle{
+    class FaceHandle: public BaseHandle{
     public:
-        explicit CellHandle(int index = -1): Handle(index){}
+        explicit FaceHandle(int index = -1): BaseHandle(index){}
+
+        FaceHandle &operator=(int index) final {
+            this->index = index;
+            return *this;
+        }
+
+        explicit operator int() const override {
+            return index;
+        }
+    };
+}
+
+
+namespace pMesh::Volume{
+    class VertexHandle: public BaseHandle{
+    public:
+        explicit VertexHandle(int index = -1): BaseHandle(index){}
+
+        VertexHandle &operator=(int index) final {
+            this->index = index;
+            return *this;
+        }
+
+        explicit operator int() const override {
+            return index;
+        }
+    };
+
+    class HalfEdgeHandle: public BaseHandle{
+    public:
+        explicit HalfEdgeHandle(int index = -1): BaseHandle(index){}
+
+        HalfEdgeHandle &operator=(int index) final {
+            this->index = index;
+            return *this;
+        }
+
+        explicit operator int() const override {
+            return index;
+        }
+    };
+
+    class EdgeHandle: public BaseHandle{
+    public:
+        explicit EdgeHandle(int index = -1): BaseHandle(index){}
+
+        EdgeHandle &operator=(int index) final {
+            this->index = index;
+            return *this;
+        }
+
+        explicit operator int() const override {
+            return index;
+        }
+    };
+
+    class CellHandle: public BaseHandle{
+    public:
+        explicit CellHandle(int index = -1): BaseHandle(index){}
 
         CellHandle &operator=(int index) final {
             this->index = index;
@@ -116,6 +173,37 @@ namespace pMesh{
             return index;
         }
     };
+
+    class HalfFaceHandle: public BaseHandle{
+    public:
+        explicit HalfFaceHandle(int index = -1): BaseHandle(index){}
+
+        HalfFaceHandle &operator=(int index) final {
+            this->index = index;
+            return *this;
+        }
+
+        explicit operator int() const override {
+            return index;
+        }
+    };
+
+
+    class FaceHandle: public BaseHandle{
+    public:
+        explicit FaceHandle(int index = -1): BaseHandle(index){}
+
+        FaceHandle &operator=(int index) final {
+            this->index = index;
+            return *this;
+        }
+
+        explicit operator int() const override {
+            return index;
+        }
+    };
+
 }
+
 
 #endif //PMESH_HANDLE_H
