@@ -92,6 +92,8 @@ namespace pMesh {
         size_t e_size() const { return edges.size(); }
 
     public:
+        void clear_half_edge_structure();
+
         void build_half_edge_structure();
     };
 };

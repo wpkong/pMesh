@@ -40,7 +40,7 @@ namespace pMesh::Volume {
     public:
         VertexHandle va, vb;
 
-        std::pair<HalfEdgeHandle, HalfEdgeHandle> half_edge_pair;
+        std::vector<HalfEdgeHandle> half_edges;
     };
 }
 

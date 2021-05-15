@@ -17,14 +17,20 @@
 #include <boost/assert.hpp>
 #include <map>
 
+template<class VertexExtraData, class HalfEdgeExtraData, class EdgeExtraData, class FaceExtraData>
+void pMesh::SurfaceMesh<VertexExtraData, HalfEdgeExtraData, EdgeExtraData, FaceExtraData>::clear_half_edge_structure() {
+    this->half_edges.clear();
+    this->edges.clear();
+}
+
+
 template<class VertexExtraData,
         class HalfEdgeExtraData,
         class EdgeExtraData,
         class FaceExtraData>
 void pMesh::SurfaceMesh<VertexExtraData, HalfEdgeExtraData, EdgeExtraData, FaceExtraData>::
 build_half_edge_structure() {
-    this->half_edges.clear();
-    this->edges.clear();
+    this->clear_half_edge_structure();
 
     std::map<std::pair<int, int>, int> edge_map;  // <min, max>, idx
 
@@ -87,5 +93,6 @@ build_half_edge_structure() {
         }
     }
 }
+
 
 #endif //PMESH_SURFACEMESH_IMPL_H
