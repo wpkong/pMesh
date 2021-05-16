@@ -41,7 +41,7 @@ namespace pMesh::io {
 
         void feed_vertex(const Point3d &v) {
             int v_id = this->mesh.v_size();
-            this->mesh.vertices.emplace_back(Vertex{.id = v_id, .coordinate = v});
+            this->mesh.vertices.emplace_back(Vertex(v_id, v));
         }
 
         void feed_collection(const std::vector<int> &c) {

@@ -16,7 +16,12 @@
 
 namespace pMesh{
     class BaseVertex{
+    public:
+        Point3d coordinate;
+        Vector3d normal;
 
+    public:
+        explicit BaseVertex(const Point3d&p): coordinate(p){};
     };
 }
 
@@ -26,11 +31,11 @@ namespace pMesh::Surface{
         int id = -1;
 
     public:
-        Point3d coordinate;
-        Vector3d normal;
-    public:
         std::vector<HalfEdgeHandle> half_edge_in;
         std::vector<HalfEdgeHandle> half_edge_out;
+
+    public:
+        explicit Vertex(int id, const Point3d &coordinate): id(id), BaseVertex(coordinate) {};
     };
 }
 
@@ -41,11 +46,11 @@ namespace pMesh::Volume {
         int id = -1;
 
     public:
-        Point3d coordinate;
-        Vector3d normal;
-    public:
         std::vector<HalfEdgeHandle> half_edge_in;
         std::vector<HalfEdgeHandle> half_edge_out;
+
+    public:
+        explicit Vertex(int id, const Point3d &coordinate): id(id), BaseVertex(coordinate) {};
     };
 }
 

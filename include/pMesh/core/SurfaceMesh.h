@@ -12,6 +12,7 @@
 #define PMESH_SURFACEMESH_H
 
 #include <pMesh/Common.h>
+#include <pMesh/core/Mesh.h>
 #include <pMesh/core/ExtraData.h>
 #include <pMesh/core/Vertex.h>
 #include <pMesh/core/Face.h>
@@ -26,7 +27,7 @@ namespace pMesh {
             class HalfEdgeExtraData=Surface::BaseHalfEdgeExtraData,
             class EdgeExtraData = Surface::BaseEdgeExtraData,
             class FaceExtraData = Surface::BaseFaceExtraData>
-    class SurfaceMesh {
+    class SurfaceMesh : public BasePointCloudMesh<VertexExtraData>{
     public:
         using Vertex = Surface::Vertex;
         using HalfEdge = Surface::HalfEdge;
@@ -49,40 +50,40 @@ namespace pMesh {
         std::vector<FaceField> faces;
 
     public:
-        Vertex &vertex(const VertexHandle &handle) { return vertices.at(handle.id()).attr; };
+        Vertex &vertex(const VertexHandle &handle) { return *vertices.at(handle.id()).attr; };
 
-        HalfEdge &half_edge(const HalfEdgeHandle &handle) { return half_edges.at(handle.id()).attr; }
+        HalfEdge &half_edge(const HalfEdgeHandle &handle) { return *half_edges.at(handle.id()).attr; }
 
-        Edge &edge(const EdgeHandle &handle) { return edges.at(handle.id()).attr; }
+        Edge &edge(const EdgeHandle &handle) { return *edges.at(handle.id()).attr; }
 
-        Face &face(const FaceHandle &handle) { return faces.at(handle.id()).attr; }
-
-    public:
-        VertexExtraData &vertex_data(const VertexHandle &handle) { return vertices.at(handle.id()).extra; };
-
-        HalfEdgeExtraData &half_edge_data(const HalfEdgeHandle &handle) { return half_edges.at(handle.id()).extra; }
-
-        EdgeExtraData &edge_data(const EdgeHandle &handle) { return edges.at(handle.id()).extra; }
-
-        FaceExtraData &face_data(const FaceHandle &handle) { return faces.at(handle.id()).extra; }
+        Face &face(const FaceHandle &handle) { return *faces.at(handle.id()).attr; }
 
     public:
-        Vertex &attr(const VertexHandle &handle) { return vertices.at(handle.id()).attr; };
+        VertexExtraData &vertex_data(const VertexHandle &handle) { return *vertices.at(handle.id()).extra; };
 
-        HalfEdge &attr(const HalfEdgeHandle &handle) { return half_edges.at(handle.id()).attr; }
+        HalfEdgeExtraData &half_edge_data(const HalfEdgeHandle &handle) { return *half_edges.at(handle.id()).extra; }
 
-        Edge &attr(const EdgeHandle &handle) { return edges.at(handle.id()).attr; }
+        EdgeExtraData &edge_data(const EdgeHandle &handle) { return *edges.at(handle.id()).extra; }
 
-        Face &attr(const FaceHandle &handle) { return faces.at(handle.id()).attr; }
+        FaceExtraData &face_data(const FaceHandle &handle) { return *faces.at(handle.id()).extra; }
 
     public:
-        VertexExtraData &data(const VertexHandle &handle) { return vertices.at(handle.id()).extra; }
+        Vertex &attr(const VertexHandle &handle) { return *vertices.at(handle.id()).attr; };
 
-        HalfEdgeExtraData &data(const HalfEdgeHandle &handle) { return half_edges.at(handle.id()).extra; }
+        HalfEdge &attr(const HalfEdgeHandle &handle) { return *half_edges.at(handle.id()).attr; }
 
-        EdgeExtraData &data(const EdgeHandle &handle) { return edges.at(handle.id()).extra; }
+        Edge &attr(const EdgeHandle &handle) { return *edges.at(handle.id()).attr; }
 
-        FaceExtraData &data(const FaceHandle &handle) { return faces.at(handle.id()).extra; }
+        Face &attr(const FaceHandle &handle) { return *faces.at(handle.id()).attr; }
+
+    public:
+        VertexExtraData &data(const VertexHandle &handle) { return *vertices.at(handle.id()).extra; }
+
+        HalfEdgeExtraData &data(const HalfEdgeHandle &handle) { return *half_edges.at(handle.id()).extra; }
+
+        EdgeExtraData &data(const EdgeHandle &handle) { return *edges.at(handle.id()).extra; }
+
+        FaceExtraData &data(const FaceHandle &handle) { return *faces.at(handle.id()).extra; }
 
     public:
         size_t v_size() const { return vertices.size(); }

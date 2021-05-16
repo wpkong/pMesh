@@ -22,10 +22,12 @@
 namespace pMesh {
     template<class Field, class ExtraData>
     struct FieldWrapper{
-        Field attr;
-        ExtraData extra;
+        std::shared_ptr<Field> attr;
+        std::shared_ptr<ExtraData> extra;
 
-        explicit FieldWrapper(const Field &attr): attr(attr), extra(attr){}
+        explicit FieldWrapper(const Field &attr): attr(new Field(attr)){
+            extra = std::make_shared<ExtraData>(*this->attr);
+        }
     };
 }
 
