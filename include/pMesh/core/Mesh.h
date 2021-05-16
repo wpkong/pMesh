@@ -15,18 +15,19 @@
 #include <pMesh/core/ExtraData.h>
 #include <pMesh/core/Vertex.h>
 
+
 namespace pMesh{
-    template<class VertexExtraData=Surface::BaseVertexExtraData>
+    template<class VertexField>
     class BasePointCloudMesh{
-    public:
-        using VertexField = FieldWrapper<BaseVertex, VertexExtraData>;
     public:
         std::vector<VertexField> vertices;
 
     public:
         void move(const Vector3d &vec);
 
-        void move(const Vector3d &dir, const double dis);
+        void move(const Vector3d &dir, double dis);
+
+        std::array<double, 6> aabb() const;
     };
 }
 
