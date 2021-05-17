@@ -14,8 +14,8 @@
 #include <boost/test/unit_test.hpp>
 #include <boost/log/trivial.hpp>
 #include <utility>
-#include <pMesh/core/Surface/Mesh.h>
-#include <pMesh/core/Common/BaseExtraData.h>
+#include <pMesh/core/SurfaceMesh.h>
+#include <pMesh/core/ExtraData.h>
 #include <pMesh/io/readers/BaseReader.h>
 #include <pMesh/io/adapters/DefaultReadAdapter.h>
 #include <pMesh/io/adapters/DefaultWriteAdapter.h>
@@ -91,13 +91,13 @@ void preprocess(){
     io::fs_path out_f_path = "/Users/kwp/Downloads/allms12307_info_test2/segments_info_F.txt";
     io::fs_path out_vtk_path = "/Users/kwp/Downloads/allms12307_info_test2/segments_info.vtk";
 
-    Mesh m;
-    EdgeFormatReader(in_path) >> io::DefaultReadAdapter(m)();
+    SurfaceMesh m;
+    EdgeFormatReader(in_path) >> io::DefaultSurfaceReadAdapter(m)();
     BOOST_LOG_TRIVIAL(debug) << "Loaded points: " << m.v_size();
     BOOST_LOG_TRIVIAL(debug) << "Loaded faces: " << m.f_size();
 
-    io::VTKWriter(3, out_vtk_path) << io::DefaultWriteAdapter(m)();
-    io::VFWriter(out_v_path, out_f_path) << io::DefaultWriteAdapter(m)();
+    io::VTKWriter(3, out_vtk_path) << io::DefaultSurfaceWriteAdapter(m)();
+    io::VFWriter(out_v_path, out_f_path) << io::DefaultSurfaceWriteAdapter(m)();
 }
 
 #endif //PMESH_PREPROCESS_H

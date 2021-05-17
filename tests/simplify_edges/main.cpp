@@ -15,6 +15,7 @@
 #include <utility>
 #include <pMesh/io/readers/BaseReader.h>
 #include <pMesh/io/readers/VTKReader.h>
+#include <pMesh/core/ExtraData.h>
 #include <pMesh/io/adapters/DefaultReadAdapter.h>
 #include <pMesh/core/SurfaceMesh.h>
 #include <pMesh/io/writers/VFWriter.h>
@@ -23,19 +24,11 @@
 #include "preprocess.h"
 #include "utils.h"
 
-
-class BlockHalfEdgeReadAdapter : public pMesh::io::DefaultSurfaceReadAdapter<> {
-public:
-    explicit BlockHalfEdgeReadAdapter(MeshType &mesh) : pMesh::io::DefaultSurfaceReadAdapter<>(mesh) {}
-
-//    void end() {}
-};
-
 BOOST_AUTO_TEST_SUITE(test)
 
     BOOST_AUTO_TEST_CASE(simplify_edges) {
-//        preprocess();
-//        return;
+        preprocess();
+        return;
         using namespace pMesh;
         io::fs_path in_v_path = "/Users/kwp/Downloads/segments_info/segments_info_V.txt";
         io::fs_path in_f_path = "/Users/kwp/Downloads/segments_info/segments_info_F.txt";
@@ -47,7 +40,7 @@ BOOST_AUTO_TEST_SUITE(test)
         io::fs_path out_vtk_path = "/Users/kwp/Downloads/allms12307_info_test2/simple_segments_info.vtk";
 
         SurfaceMesh m;
-        io::VTKReader(in_vtk_path) >> BlockHalfEdgeReadAdapter(m)();
+        io::VTKReader(in_vtk_path) >> io::DefaultSurfaceReadAdapter(m)();
         BOOST_LOG_TRIVIAL(debug) << "Loaded points: " << m.v_size();
         BOOST_LOG_TRIVIAL(debug) << "Loaded faces: " << m.f_size();
 
@@ -57,7 +50,7 @@ BOOST_AUTO_TEST_SUITE(test)
 
         std::set<vertex_pair> edges;
         for (auto &cell: m.faces) {
-            edges.emplace(cell.attr.vertices[0], cell.attr.vertices[1]);
+            edges.emplace(cell.attr->vertices[0], cell.attr->vertices[1]);
         }
         auto chains = convert_edges_to_chains(edges);
         for (auto &chain: chains) {
@@ -69,13 +62,13 @@ BOOST_AUTO_TEST_SUITE(test)
             }
             if (chain.size() > 1) {
                 for (auto it = std::next(chain_vec.begin()); it != chain_vec.end() && (it + 1) != chain_vec.end();) {
-                    const Point3d p1 = new_m.vertices[*(it - 1)].attr.coordinate;
-                    const Point3d p0 = new_m.vertices[*it].attr.coordinate;
-                    const Point3d p2 = new_m.vertices[*(it + 1)].attr.coordinate;
+                    const Point3d p1 = new_m.vertices[*(it - 1)].attr->coordinate;
+                    const Point3d p0 = new_m.vertices[*it].attr->coordinate;
+                    const Point3d p2 = new_m.vertices[*(it + 1)].attr->coordinate;
                     Vector3d v1 = (p0 - p1).normalized();
                     Vector3d v2 = (p2 - p0).normalized();
-                    BOOST_LOG_TRIVIAL(debug) << v1.dot(v2);
-                    if (v1.dot(v2) >= 0.95) { // 平行
+//                    BOOST_LOG_TRIVIAL(debug) << v1.dot(v2);
+                    if (v1.dot(v2) >= 0.9) { // 平行
                         it = chain_vec.erase(it);
                     } else {
                         ++it;
@@ -88,6 +81,8 @@ BOOST_AUTO_TEST_SUITE(test)
                         Surface::Face{.vertices = {Surface::VertexHandle(chain_vec[i - 1]), Surface::VertexHandle(chain_vec[i])}});
             }
         }
+
+        std::deque<int> q;
 
         io::VTKWriter(3, out_vtk_path) << io::DefaultSurfaceWriteAdapter(new_m)();
         io::VFWriter(out_v_path, out_f_path) << io::DefaultSurfaceWriteAdapter(new_m)();
