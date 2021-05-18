@@ -13,7 +13,7 @@
 
 namespace pMesh{
     class BaseHandle {
-    protected:
+    public:
         int index = -1;
 
     public:
@@ -43,6 +43,10 @@ namespace pMesh{
 
         bool operator>=(const BaseHandle &handle) const {
             return this->index >= handle.index;
+        }
+
+        bool is_valid() const {
+            return this->index != -1;
         }
 
         virtual BaseHandle &operator=(int index) {

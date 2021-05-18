@@ -49,7 +49,7 @@ namespace pMesh::io {
 
         bool request_vertex(Point3d &p) override {
             if(v_it == this->mesh.vertices.end()) return false;
-            p = v_it->attr->coordinate;
+            p = v_it->attr.coordinate;
             v_it++;
             return true;
         };
@@ -57,7 +57,7 @@ namespace pMesh::io {
         bool request_collection(std::vector<int> &c) override {
             if(c_it == this->mesh.faces.end()) return false;
             c.clear();
-            for(const VertexHandle &v: c_it->attr->vertices){
+            for(const VertexHandle &v: c_it->attr.vertices){
                 c.push_back(v.id());
             }
             c_it++;

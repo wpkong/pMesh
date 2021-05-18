@@ -21,18 +21,27 @@
 
 namespace pMesh {
     template<class Field, class ExtraData>
-    struct FieldWrapper{
-        std::shared_ptr<Field> attr;
-        std::shared_ptr<ExtraData> extra;
+    struct FieldWrapper {
+        Field attr;
+        ExtraData extra;
 
-        explicit FieldWrapper(const Field &attr): attr(new Field(attr)){
-            extra = std::make_shared<ExtraData>(*this->attr);
+        explicit FieldWrapper(const Field &attr) : attr(attr), extra(this->attr) {
+            // TODO: init extra data
         }
+
+//        FieldWrapper<Field, ExtraData> copy() {
+//            std::shared_ptr<Field> new_attr(new Field(*attr));
+//            std::shared_ptr<ExtraData> new_extra(new ExtraData(*extra));
+//            return FieldWrapper<Field, ExtraData>{
+//                    .attr = new_attr,
+//                    .extra = extra
+//            };
+//        }
     };
 }
 
 
-namespace pMesh::Surface{
+namespace pMesh::Surface {
     template<class VertexExtraData>
     using VertexWrapper = FieldWrapper<Vertex, VertexExtraData>;
 

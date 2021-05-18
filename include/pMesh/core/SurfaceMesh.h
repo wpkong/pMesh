@@ -29,6 +29,7 @@ namespace pMesh {
             class FaceExtraData = Surface::BaseFaceExtraData>
     class SurfaceMesh : public BasePointCloudMesh<FieldWrapper<Surface::Vertex, VertexExtraData>>{
     public:
+        using MeshType = SurfaceMesh<VertexExtraData, HalfEdgeExtraData, EdgeExtraData, FaceExtraData>;
         using Vertex = Surface::Vertex;
         using HalfEdge = Surface::HalfEdge;
         using Edge = Surface::Edge;
@@ -49,41 +50,44 @@ namespace pMesh {
         std::vector<EdgeField> edges;
         std::vector<FaceField> faces;
 
-    public:
-        Vertex &vertex(const VertexHandle &handle) { return *this->vertices.at(handle.id()).attr; };
-
-        HalfEdge &half_edge(const HalfEdgeHandle &handle) { return *half_edges.at(handle.id()).attr; }
-
-        Edge &edge(const EdgeHandle &handle) { return *edges.at(handle.id()).attr; }
-
-        Face &face(const FaceHandle &handle) { return *faces.at(handle.id()).attr; }
+    protected:
+        bool half_edge_dirty = true;
 
     public:
-        VertexExtraData &vertex_data(const VertexHandle &handle) { return *this->vertices.at(handle.id()).extra; };
+        Vertex &vertex(const VertexHandle &handle) { return this->vertices.at(handle.id()).attr; };
 
-        HalfEdgeExtraData &half_edge_data(const HalfEdgeHandle &handle) { return *half_edges.at(handle.id()).extra; }
+        HalfEdge &half_edge(const HalfEdgeHandle &handle) { return half_edges.at(handle.id()).attr; }
 
-        EdgeExtraData &edge_data(const EdgeHandle &handle) { return *edges.at(handle.id()).extra; }
+        Edge &edge(const EdgeHandle &handle) { return edges.at(handle.id()).attr; }
 
-        FaceExtraData &face_data(const FaceHandle &handle) { return *faces.at(handle.id()).extra; }
-
-    public:
-        Vertex &attr(const VertexHandle &handle) { return *this->vertices.at(handle.id()).attr; };
-
-        HalfEdge &attr(const HalfEdgeHandle &handle) { return *half_edges.at(handle.id()).attr; }
-
-        Edge &attr(const EdgeHandle &handle) { return *edges.at(handle.id()).attr; }
-
-        Face &attr(const FaceHandle &handle) { return *faces.at(handle.id()).attr; }
+        Face &face(const FaceHandle &handle) { return faces.at(handle.id()).attr; }
 
     public:
-        VertexExtraData &data(const VertexHandle &handle) { return *this->vertices.at(handle.id()).extra; }
+        VertexExtraData &vertex_data(const VertexHandle &handle) { return this->vertices.at(handle.id()).extra; };
 
-        HalfEdgeExtraData &data(const HalfEdgeHandle &handle) { return *half_edges.at(handle.id()).extra; }
+        HalfEdgeExtraData &half_edge_data(const HalfEdgeHandle &handle) { return half_edges.at(handle.id()).extra; }
 
-        EdgeExtraData &data(const EdgeHandle &handle) { return *edges.at(handle.id()).extra; }
+        EdgeExtraData &edge_data(const EdgeHandle &handle) { return edges.at(handle.id()).extra; }
 
-        FaceExtraData &data(const FaceHandle &handle) { return *faces.at(handle.id()).extra; }
+        FaceExtraData &face_data(const FaceHandle &handle) { return faces.at(handle.id()).extra; }
+
+    public:
+        Vertex &attr(const VertexHandle &handle) { return this->vertices.at(handle.id()).attr; };
+
+        HalfEdge &attr(const HalfEdgeHandle &handle) { return half_edges.at(handle.id()).attr; }
+
+        Edge &attr(const EdgeHandle &handle) { return edges.at(handle.id()).attr; }
+
+        Face &attr(const FaceHandle &handle) { return faces.at(handle.id()).attr; }
+
+    public:
+        VertexExtraData &data(const VertexHandle &handle) { return this->vertices.at(handle.id()).extra; }
+
+        HalfEdgeExtraData &data(const HalfEdgeHandle &handle) { return half_edges.at(handle.id()).extra; }
+
+        EdgeExtraData &data(const EdgeHandle &handle) { return edges.at(handle.id()).extra; }
+
+        FaceExtraData &data(const FaceHandle &handle) { return faces.at(handle.id()).extra; }
 
     public:
         size_t v_size() const { return this->vertices.size(); }
@@ -96,6 +100,21 @@ namespace pMesh {
         void clear_half_edge_structure();
 
         void build_half_edge_structure();
+
+        /**
+         * Discard unused vertices
+         */
+        void compact_vertices();
+
+        /**
+         * Split this mesh into separated meshes via its connectivity
+         */
+        std::vector<MeshType> split_into_meshes();
+
+        void clear();
+
+    public:
+        MeshType &operator +=(MeshType mesh);
     };
 };
 

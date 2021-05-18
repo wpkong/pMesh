@@ -28,6 +28,8 @@ namespace pMesh{
         void move(const Vector3d &dir, double dis);
 
         std::array<double, 6> aabb() const;
+
+        std::vector<VertexField> copy_vertices();
     };
 }
 

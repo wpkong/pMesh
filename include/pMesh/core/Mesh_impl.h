@@ -52,4 +52,15 @@ std::array<double, 6> pMesh::BasePointCloudMesh<VertexField>::aabb() const {
 }
 
 
+template<class VertexField>
+std::vector<VertexField> pMesh::BasePointCloudMesh<VertexField>::copy_vertices(){
+    std::vector<VertexField> new_vs;
+    // TODO: check the necessity
+//    new_vs.reserve(this->vertices.size());
+//    std::transform(this->vertices.begin(), this->vertices.end(), std::back_inserter(new_vs), [](const VertexField &vf){
+//        return vf.copy();
+//    });
+    return new_vs;
+}
+
 #endif //PMESH_MESH_IMPL_H
