@@ -15,7 +15,7 @@
 #include <eigen3/Eigen/Core>
 #include <vector>
 
-namespace RBF {
+namespace pMesh::RBF {
     typedef Eigen::Matrix<double, 3, 1> Point3d;
     typedef Eigen::Matrix<double, 3, 1> Vector3d;
 

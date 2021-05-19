@@ -8,10 +8,10 @@
  * ------------------------------------
 **/
 
-#include "RBF/kernels.h"
+#include <pMesh/functional/RBF/kernels.h>
 #include <cmath>
 
-namespace RBF {
+namespace pMesh::RBF {
     namespace kernel {
         gaussian_kernel::gaussian_kernel(double sigma) : sigma(sigma) {}
 

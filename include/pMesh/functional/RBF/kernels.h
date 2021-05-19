@@ -13,7 +13,7 @@
 
 #include <functional>
 
-namespace RBF {
+namespace pMesh::RBF {
     namespace kernel {
         class kernel_function {
         public:

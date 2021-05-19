@@ -8,7 +8,7 @@
  * ------------------------------------
 **/
 
-#include "RBF/RBFInterpolation.h"
+#include <pMesh/functional/RBF/RBFInterpolation.h>
 
 #include <map>
 #include <Eigen/IterativeLinearSolvers>
@@ -16,13 +16,13 @@
 #include <boost/timer.hpp>
 #include <RBF/RBFInterpolation.h>
 
-RBF::RBFInterpolation::RBFInterpolation(const RBFInterpolation &obj) :
+pMesh::RBF::RBFInterpolation::RBFInterpolation(const RBFInterpolation &obj) :
         kf(obj.kf) {
     this->control_values = obj.control_values;
     this->weights = obj.weights;
 }
 
-RBF::RBFInterpolation::RBFInterpolation(Eigen::MatrixXd x,
+pMesh::RBF::RBFInterpolation::RBFInterpolation(Eigen::MatrixXd x,
                                         Eigen::VectorXd y,
                                         const std::shared_ptr<kernel::kernel_function> kf,
                                         double sigma,
@@ -136,7 +136,7 @@ RBF::RBFInterpolation::RBFInterpolation(Eigen::MatrixXd x,
     }
 }
 
-Eigen::MatrixXd RBF::RBFInterpolation::eval(const Eigen::MatrixXd &x) {
+Eigen::MatrixXd pMesh::RBF::RBFInterpolation::eval(const Eigen::MatrixXd &x) {
     if (kf == nullptr) {
         throw std::runtime_error("kernel function can not be null");
     }

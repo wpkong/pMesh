@@ -18,7 +18,7 @@ explicit solver##Solver() = delete;   \
 explicit solver##Solver(bool verbose): Solver(SolverType::solver, verbose){} \
 };
 
-namespace RBF {
+namespace pMesh::RBF {
     namespace LinearSolver {
         enum class SolverType {
             PartialPivLu = 0,

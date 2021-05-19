@@ -15,7 +15,7 @@
 #include "kernels.h"
 #include "LinearSolverType.h"
 
-namespace RBF {
+namespace pMesh::RBF {
     class RBFInterpolation {
     private:
         std::shared_ptr<kernel::kernel_function> kf = nullptr;

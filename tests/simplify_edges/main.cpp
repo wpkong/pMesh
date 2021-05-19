@@ -29,15 +29,15 @@ int main() {
     io::fs_path out_f_path;
     io::fs_path out_vtk_path;
 
-    in_vtk_path = "/Users/kwp/Downloads/allms12307_info_test2/segments_info.vtk";
-    out_v_path = "/Users/kwp/Downloads/allms12307_info_test2/simple_segments_info_V.txt";
-    out_f_path = "/Users/kwp/Downloads/allms12307_info_test2/simple_segments_info_F.txt";
-    out_vtk_path = "/Users/kwp/Downloads/allms12307_info_test2/simple_segments_info.vtk";
+//    in_vtk_path = "/Users/kwp/Downloads/allms12307_info_test2/segments_info.vtk";
+//    out_v_path = "/Users/kwp/Downloads/allms12307_info_test2/simple_segments_info_V.txt";
+//    out_f_path = "/Users/kwp/Downloads/allms12307_info_test2/simple_segments_info_F.txt";
+//    out_vtk_path = "/Users/kwp/Downloads/allms12307_info_test2/simple_segments_info.vtk";
 
-//    in_vtk_path = "/Users/kwp/Downloads/allms12307_info_test2/sharpedges/line.vtk";
-//    out_v_path = "/Users/kwp/Downloads/allms12307_info_test2/sharpedges_V.txt";
-//    out_f_path = "/Users/kwp/Downloads/allms12307_info_test2/sharpedges_F.txt";
-//    out_vtk_path = "/Users/kwp/Downloads/allms12307_info_test2/sharpedges.vtk";
+    in_vtk_path = "/Users/kwp/Downloads/allms12307_info_test2/sharpedges/line.vtk";
+    out_v_path = "/Users/kwp/Downloads/allms12307_info_test2/sharpedges_V1.txt";
+    out_f_path = "/Users/kwp/Downloads/allms12307_info_test2/sharpedges_F1.txt";
+    out_vtk_path = "/Users/kwp/Downloads/allms12307_info_test2/sharpedges1.vtk";
 
     SurfaceMesh m;
     io::VTKReader(in_vtk_path) >> io::DefaultSurfaceReadAdapter(m)();
@@ -86,7 +86,7 @@ int main() {
                         max_v = dot_v;
                     }
                 }
-                if(max_v >= 0.8){
+                if(max_v >= 0.995){
                     chain_vec.erase(max_it);
                 }else{
                     break;
@@ -111,7 +111,7 @@ int main() {
     new_m.compact_vertices();
     new_m.build_half_edge_structure();
 
-    if(true){
+    if(false){
         vector<typename SurfaceMesh<>::MeshType> meshes = new_m.split_into_meshes();
         BOOST_LOG_TRIVIAL(info) << "Split the mesh into " << meshes.size();
 
@@ -124,8 +124,7 @@ int main() {
                 leng += (mesh.vertex(a).coordinate - mesh.vertex(b).coordinate).squaredNorm();
             }
             BOOST_LOG_TRIVIAL(info) << "Length = " << leng;
-            if(leng > 1) new_m += mesh;
-            new_m += mesh;
+            if(leng > 10) new_m += mesh;
         }
     }
 
