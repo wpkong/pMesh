@@ -17,7 +17,7 @@
 template<class VertexField>
 void pMesh::BasePointCloudMesh<VertexField>::move(const Vector3d &vec){
     for(VertexField &v: vertices){
-        v.attr->coordinate += vec;
+        v.attr.coordinate += vec;
     }
 }
 
@@ -37,7 +37,7 @@ std::array<double, 6> pMesh::BasePointCloudMesh<VertexField>::aabb() const {
             std::numeric_limits<double>::max(),
             std::numeric_limits<double>::lowest()};
     for(const VertexField &v: this->vertices){
-        const auto &p = v.attr->coordinate;
+        const auto &p = v.attr.coordinate;
         aabb[0] = std::min(p.x(), aabb[0]);
         aabb[1] = std::max(p.x(), aabb[1]);
 

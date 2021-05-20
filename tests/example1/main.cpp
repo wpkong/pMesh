@@ -30,6 +30,8 @@ BOOST_AUTO_TEST_SUITE(test)
         BOOST_LOG_TRIVIAL(debug) << "AABB(x): " << aabb[0] << " x " << aabb[1];
         BOOST_LOG_TRIVIAL(debug) << "AABB(y): " << aabb[2] << " x " << aabb[3];
         BOOST_LOG_TRIVIAL(debug) << "AABB(z): " << aabb[4] << " x " << aabb[5];
+        std::set<int> s;
+
     }
 
 BOOST_AUTO_TEST_SUITE_END()
