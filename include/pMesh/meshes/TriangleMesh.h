@@ -11,16 +11,17 @@
 #ifndef PMESH_TRIANGLEMESH_H
 #define PMESH_TRIANGLEMESH_H
 
-#include <pMesh/core/Surface/Mesh.h>
+#include <pMesh/core/SurfaceMesh.h>
 #include <vector>
 
 namespace pMesh{
-//    template<class HalfEdgeTrait=NullTrait,
-//            class VertexTrait=NullTrait,
-//            class CellTrait=NullTrait>
-//    class Triangle3dMesh: public Mesh<3, 3, HalfEdgeTrait, VertexTrait, CellTrait>{
-//
-//    };
+    template<class VertexExtraData=Surface::BaseVertexExtraData,
+            class HalfEdgeExtraData=Surface::BaseHalfEdgeExtraData,
+            class EdgeExtraData = Surface::BaseEdgeExtraData,
+            class FaceExtraData = Surface::BaseFaceExtraData>
+    class Triangle3dMesh: public SurfaceMesh<VertexExtraData, HalfEdgeExtraData, EdgeExtraData, FaceExtraData>{
+
+    };
 }
 
 #endif //PMESH_TRIANGLEMESH_H
