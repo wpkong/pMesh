@@ -23,7 +23,9 @@ namespace pMesh {
     using Domain3d = boost::tuple<Range, Range, Range>;
     using Size3d = boost::tuple<double, double, double>;
 
-    class Cube {
+    struct Cube {
+        Point3d vertices[8];
+        double f_value[8];
 
     };
 

@@ -22,7 +22,7 @@
 
 int main() {
 //        preprocess();
-//        return;
+//        return 0;
     using namespace pMesh;
     io::fs_path in_vtk_path;
     io::fs_path out_v_path;
@@ -34,10 +34,12 @@ int main() {
 //    out_f_path = "/Users/kwp/Downloads/allms12307_info_test2/simple_segments_info_F.txt";
 //    out_vtk_path = "/Users/kwp/Downloads/allms12307_info_test2/simple_segments_info.vtk";
 
-    in_vtk_path = "/Users/kwp/Downloads/allms12307_info_test2/sharpedges/line.vtk";
-    out_v_path = "/Users/kwp/Downloads/allms12307_info_test2/sharpedges_V1.txt";
-    out_f_path = "/Users/kwp/Downloads/allms12307_info_test2/sharpedges_F1.txt";
-    out_vtk_path = "/Users/kwp/Downloads/allms12307_info_test2/sharpedges1.vtk";
+    std::string name = "white_feature";
+
+    in_vtk_path = "/Users/kwp/Downloads/Insole_STLs/" + name + ".vtk";
+    out_v_path = "/Users/kwp/Downloads/Insole_STLs/" + name + "_V_sim.txt";
+    out_f_path = "/Users/kwp/Downloads/Insole_STLs/" + name + "_F_sim.txt";
+    out_vtk_path = "/Users/kwp/Downloads/Insole_STLs/" + name + "_sim.vtk";
 
     SurfaceMesh m;
     io::VTKReader(in_vtk_path) >> io::DefaultSurfaceReadAdapter(m)();
