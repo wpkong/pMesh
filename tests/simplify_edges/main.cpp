@@ -35,6 +35,7 @@ int main() {
 //    out_vtk_path = "/Users/kwp/Downloads/allms12307_info_test2/simple_segments_info.vtk";
 
     std::string name = "white_feature";
+    bool length_fileter = true;
 
     in_vtk_path = "/Users/kwp/Downloads/Insole_STLs/" + name + ".vtk";
     out_v_path = "/Users/kwp/Downloads/Insole_STLs/" + name + "_V_sim.txt";
@@ -113,7 +114,7 @@ int main() {
     new_m.compact_vertices();
     new_m.build_half_edge_structure();
 
-    if(false){
+    if(length_fileter){
         vector<typename SurfaceMesh<>::MeshType> meshes = new_m.split_into_meshes();
         BOOST_LOG_TRIVIAL(info) << "Split the mesh into " << meshes.size();
 
