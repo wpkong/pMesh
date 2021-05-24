@@ -86,10 +86,10 @@ namespace pMesh{
 
 void preprocess(){
     using namespace pMesh;
-    io::fs_path in_path = "/Users/kwp/Downloads/Insole_Intersect_Edges/white_edges_info.txt";
-    io::fs_path out_v_path = "/Users/kwp/Downloads/Insole_Intersect_Edges/white_edges_info_V.txt";
-    io::fs_path out_f_path = "/Users/kwp/Downloads/Insole_Intersect_Edges/white_edges_info_F.txt";
-    io::fs_path out_vtk_path = "/Users/kwp/Downloads/Insole_Intersect_Edges/white_edges_info.vtk";
+    io::fs_path in_path = "/Users/kwp/Downloads/未命名文件夹/midsole_rescale0.8_egdes_type2_info.txt";
+    io::fs_path out_v_path = "/Users/kwp/Downloads/未命名文件夹/midsole_rescale0.8_egdes_type2_v.txt";
+    io::fs_path out_f_path = "/Users/kwp/Downloads/未命名文件夹/midsole_rescale0.8_egdes_type2_f.txt";
+    io::fs_path out_vtk_path = "/Users/kwp/Downloads/未命名文件夹/midsole_rescale0.8_egdes_type2.vtk";
 
     SurfaceMesh m;
     EdgeFormatReader(in_path) >> io::DefaultSurfaceReadAdapter(m)();

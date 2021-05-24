@@ -34,13 +34,13 @@ int main() {
 //    out_f_path = "/Users/kwp/Downloads/allms12307_info_test2/simple_segments_info_F.txt";
 //    out_vtk_path = "/Users/kwp/Downloads/allms12307_info_test2/simple_segments_info.vtk";
 
-    std::string name = "white_feature";
+    std::string name = "midsole_rescale0.8_egdes";
     bool length_fileter = true;
 
-    in_vtk_path = "/Users/kwp/Downloads/Insole_STLs/" + name + ".vtk";
-    out_v_path = "/Users/kwp/Downloads/Insole_STLs/" + name + "_V_sim.txt";
-    out_f_path = "/Users/kwp/Downloads/Insole_STLs/" + name + "_F_sim.txt";
-    out_vtk_path = "/Users/kwp/Downloads/Insole_STLs/" + name + "_sim.vtk";
+    in_vtk_path = "/Users/kwp/Downloads/未命名文件夹/" + name + ".vtk";
+    out_v_path = "/Users/kwp/Downloads/未命名文件夹/" + name + "_V_sim.txt";
+    out_f_path = "/Users/kwp/Downloads/未命名文件夹/" + name + "_F_sim.txt";
+    out_vtk_path = "/Users/kwp/Downloads/未命名文件夹/" + name + "_sim.vtk";
 
     SurfaceMesh m;
     io::VTKReader(in_vtk_path) >> io::DefaultSurfaceReadAdapter(m)();
@@ -127,7 +127,7 @@ int main() {
                 leng += (mesh.vertex(a).coordinate - mesh.vertex(b).coordinate).squaredNorm();
             }
             BOOST_LOG_TRIVIAL(info) << "Length = " << leng;
-            if(leng > 10) new_m += mesh;
+            if(leng > 40) new_m += mesh;
         }
     }
 

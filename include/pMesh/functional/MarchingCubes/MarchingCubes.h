@@ -17,8 +17,8 @@
 #include <functional>
 
 namespace pMesh {
-    using signed_directional_field = std::function<double(Point3d)>;
-    using grad_func = std::function<Vector3d(Point3d)>;
+    using signed_directional_field = std::function<double(const Point3d&)>;
+    using grad_func = std::function<Vector3d(const Point3d &)>;
     using Range = std::pair<double, double>;
     using Domain3d = boost::tuple<Range, Range, Range>;
     using Size3d = boost::tuple<double, double, double>;
@@ -29,7 +29,9 @@ namespace pMesh {
 
     };
 
-    Triangle3dMesh<> isosurface(signed_directional_field &sdf, const Domain3d &domain, const Size3d &size);
+    Triangle3dMesh<> isosurface(
+            signed_directional_field sdf, const Domain3d &domain, const Vector3d &size,
+            double level = 0, grad_func grad = nullptr);
 }
 
 
