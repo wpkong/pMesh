@@ -7,7 +7,6 @@ option(pMesh_BUILD_TEST  "Build test projects" ON)
 
 file(GLOB_RECURSE headers
         ${CMAKE_CURRENT_SOURCE_DIR}/include/pMesh/*.h
-        ${CMAKE_CURRENT_SOURCE_DIR}/include/pMesh/*.impl
         )
 file(GLOB_RECURSE sources ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
 
@@ -57,7 +56,7 @@ target_include_directories(pMesh PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 
 # install
-install(FILES ${headers} DESTINATION include/pMesh)
+install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/include/pMesh/ DESTINATION include/pMesh)
 install(TARGETS pMesh ARCHIVE DESTINATION lib)
 
 # build test
