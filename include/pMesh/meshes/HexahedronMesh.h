@@ -23,7 +23,11 @@ namespace pMesh{
     >
     class HexahedronMesh: public VolumeMesh<VertexExtraData, HalfEdgeExtraData, EdgeExtraData, HalfFaceExtraData, FaceExtraData, CellExtraData>{
 
+        void build_half_face_structure();
     };
+
 }
+
+#include <pMesh/meshes/HexahedronMesh_impl.h>
 
 #endif //PMESH_HEXAHEDRONMESH_H

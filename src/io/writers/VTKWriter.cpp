@@ -9,10 +9,7 @@
 **/
 
 #include <pMesh/io/writers/VTKWriter.h>
-
-inline double approximate(const double x, const double eps) {
-    return std::fabs(x - round(x)) < eps ? (round(x) == -0.0 ? 0 : round(x)) : x;
-}
+#include <pMesh/Numeric.h>
 
 pMesh::io::VTKWriter::VTKWriter(int type, const pMesh::io::fs_path &path) : type(type), path(path) {
 
