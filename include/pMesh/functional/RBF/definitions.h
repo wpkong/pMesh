@@ -11,6 +11,7 @@
 #ifndef RBF_DEFINITIONS_H
 #define RBF_DEFINITIONS_H
 
+#include <memory>
 #include <eigen3/Eigen/Dense>
 #include <eigen3/Eigen/Core>
 #include <vector>

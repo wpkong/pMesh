@@ -11,6 +11,7 @@
 #ifndef RBF_RBFINTERPOLATION_H
 #define RBF_RBFINTERPOLATION_H
 
+#include <memory>
 #include "definitions.h"
 #include "kernels.h"
 #include "LinearSolverType.h"
