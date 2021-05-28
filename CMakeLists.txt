@@ -3,7 +3,7 @@ project(pMesh)
 
 set(CMAKE_CXX_STANDARD 20)
 
-option(pMesh_BUILD_TEST  "Build test projects" ON)
+option(pMesh_BUILD_TEST  "Build test projects" OFF)
 
 file(GLOB_RECURSE headers
         ${CMAKE_CURRENT_SOURCE_DIR}/include/pMesh/*.h
