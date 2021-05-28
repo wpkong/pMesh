@@ -14,7 +14,6 @@
 #include <Eigen/IterativeLinearSolvers>
 #include <boost/log/trivial.hpp>
 #include <boost/timer.hpp>
-#include <RBF/RBFInterpolation.h>
 
 pMesh::RBF::RBFInterpolation::RBFInterpolation(const RBFInterpolation &obj) :
         kf(obj.kf) {
