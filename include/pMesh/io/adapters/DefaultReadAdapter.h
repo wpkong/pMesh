@@ -47,7 +47,8 @@ namespace pMesh::io {
 
         void feed_collection(const std::vector<int> &c) {
             int c_id = this->mesh.f_size();
-            Face face{.id = c_id};
+            Face face;
+            face.id = c_id;
             std::transform(c.begin(), c.end(), std::back_inserter(face.vertices), [](int v){
                 return VertexHandle(v);
             });
@@ -96,7 +97,8 @@ namespace pMesh::io {
 
         void feed_collection(const std::vector<int> &c) {
             int c_id = this->mesh.f_size();
-            Cell cell{.id = c_id};
+            Cell cell;
+            cell.id = c_id;
             std::transform(c.begin(), c.end(), std::back_inserter(cell.vertices), [](int v){
                 return VertexHandle(v);
             });
