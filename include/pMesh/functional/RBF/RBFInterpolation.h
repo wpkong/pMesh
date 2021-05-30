@@ -16,10 +16,10 @@
 #include "kernels.h"
 #include "LinearSolverType.h"
 
-namespace pMesh::RBF {
+namespace pMesh {
     class RBFInterpolation {
     private:
-        std::shared_ptr<kernel::kernel_function> kf = nullptr;
+        std::shared_ptr<RBF::kernel::kernel_function> kf = nullptr;
         Eigen::MatrixXd control_values;
         Eigen::MatrixXd weights;
 
@@ -31,9 +31,9 @@ namespace pMesh::RBF {
          */
         explicit RBFInterpolation(Eigen::MatrixXd x,
                                   Eigen::VectorXd y,
-                                  const std::shared_ptr<kernel::kernel_function> kernel,
+                                  const std::shared_ptr<RBF::kernel::kernel_function> kernel,
                                   double sigma = 0,
-                                  const LinearSolver::Solver &linear_solver = LinearSolver::LDLTSolver(true));
+                                  const RBF::LinearSolver::Solver &linear_solver = LinearSolver::LDLTSolver(true));
 
         RBFInterpolation(const RBFInterpolation &obj);
 

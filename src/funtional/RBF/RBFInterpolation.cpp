@@ -16,17 +16,17 @@
 #include <boost/timer.hpp>
 #include <memory>
 
-pMesh::RBF::RBFInterpolation::RBFInterpolation(const RBFInterpolation &obj) :
+pMesh::RBFInterpolation::RBFInterpolation(const RBFInterpolation &obj) :
         kf(obj.kf) {
     this->control_values = obj.control_values;
     this->weights = obj.weights;
 }
 
-pMesh::RBF::RBFInterpolation::RBFInterpolation(Eigen::MatrixXd x,
-                                        Eigen::VectorXd y,
-                                        const std::shared_ptr<kernel::kernel_function> kf,
-                                        double sigma,
-                                        const LinearSolver::Solver &linear_solver) : kf(kf) {
+pMesh::RBFInterpolation::RBFInterpolation(Eigen::MatrixXd x,
+                                          Eigen::VectorXd y,
+                                          const std::shared_ptr<RBF::kernel::kernel_function> kf,
+                                          double sigma,
+                                          const RBF::LinearSolver::Solver &linear_solver) : kf(kf) {
     this->control_values = x;
     int n = x.rows();
     int d = x.cols();
@@ -85,28 +85,28 @@ pMesh::RBF::RBFInterpolation::RBFInterpolation(Eigen::MatrixXd x,
     // solve
     boost::timer tiktok;
     switch (linear_solver.solver_type) {
-        case LinearSolver::SolverType::PartialPivLu:
+        case RBF::LinearSolver::SolverType::PartialPivLu:
             this->weights = A.partialPivLu().solve(b);
-        case LinearSolver::SolverType::FullPivLu:
+        case RBF::LinearSolver::SolverType::FullPivLu:
             this->weights = A.fullPivLu().solve(b);
             break;
-        case LinearSolver::SolverType::HouseholderQr:
+        case RBF::LinearSolver::SolverType::HouseholderQr:
             this->weights = A.householderQr().solve(b);
             break;
-        case LinearSolver::SolverType::ColPivHouseholderQr:
+        case RBF::LinearSolver::SolverType::ColPivHouseholderQr:
             this->weights = A.colPivHouseholderQr().solve(b);
             break;
-        case LinearSolver::SolverType::FullPivHouseholderQr:
+        case RBF::LinearSolver::SolverType::FullPivHouseholderQr:
             this->weights = A.fullPivHouseholderQr().solve(b);
             break;
-        case LinearSolver::SolverType::LLT:
+        case RBF::LinearSolver::SolverType::LLT:
             this->weights = A.llt().solve(b);
             break;
-        case LinearSolver::SolverType::LDLT:
+        case RBF::LinearSolver::SolverType::LDLT:
             this->weights = A.ldlt().solve(b);
             break;
-        case LinearSolver::SolverType::ConjugateGradient: {
-            auto cgs = (LinearSolver::ConjugateGradientSolver *) &linear_solver;
+        case RBF::LinearSolver::SolverType::ConjugateGradient: {
+            auto cgs = (RBF::LinearSolver::ConjugateGradientSolver * ) & linear_solver;
             Eigen::ConjugateGradient<Eigen::MatrixXd, Eigen::Lower | Eigen::Upper, Eigen::IdentityPreconditioner> cg(A);
             if (linear_solver.verbose) {
                 BOOST_LOG_TRIVIAL(info) << "********* ConjugateGradient Info: *********";
