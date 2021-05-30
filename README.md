@@ -1,3 +1,3 @@
 # pMesh
 
-an advanced mesh processing lib
+A mesh processing lib
