@@ -12,7 +12,7 @@
 #define PMESH_MARCHINGCUBES_H
 
 #include <pMesh/Common.h>
-#include <pMesh/meshes/TriangleMesh.h>
+#include <pMesh/mesh/TriangleMesh.h>
 #include <boost/tuple/tuple.hpp>
 #include <functional>
 

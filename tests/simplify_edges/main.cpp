@@ -9,12 +9,12 @@
 **/
 
 #include <utility>
-#include <pMesh/io/readers/BaseReader.h>
-#include <pMesh/io/readers/VTKReader.h>
+#include <pMesh/io/reader/BaseReader.h>
+#include <pMesh/io/reader/VTKReader.h>
 #include <pMesh/core/ExtraData.h>
-#include <pMesh/io/adapters/DefaultReadAdapter.h>
+#include <pMesh/io/adapter/DefaultReadAdapter.h>
 #include <pMesh/core/SurfaceMesh.h>
-#include <pMesh/io/writers/VFWriter.h>
+#include <pMesh/io/writer/VFWriter.h>
 #include <fstream>
 #include <sstream>
 #include "preprocess.h"

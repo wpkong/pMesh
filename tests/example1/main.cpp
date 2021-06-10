@@ -15,8 +15,8 @@
 #include <boost/log/trivial.hpp>
 #include <pMesh/core/SurfaceMesh.h>
 #include <pMesh/core/ExtraData.h>
-#include <pMesh/io/readers/STLReader.h>
-#include <pMesh/io/adapters/DefaultReadAdapter.h>
+#include <pMesh/io/reader/STLReader.h>
+#include <pMesh/io/adapter/DefaultReadAdapter.h>
 
 BOOST_AUTO_TEST_SUITE(test)
 

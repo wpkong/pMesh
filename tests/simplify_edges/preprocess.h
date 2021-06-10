@@ -16,11 +16,11 @@
 #include <utility>
 #include <pMesh/core/SurfaceMesh.h>
 #include <pMesh/core/ExtraData.h>
-#include <pMesh/io/readers/BaseReader.h>
-#include <pMesh/io/adapters/DefaultReadAdapter.h>
-#include <pMesh/io/adapters/DefaultWriteAdapter.h>
-#include <pMesh/io/writers/VTKWriter.h>
-#include <pMesh/io/writers/VFWriter.h>
+#include <pMesh/io/reader/BaseReader.h>
+#include <pMesh/io/adapter/DefaultReadAdapter.h>
+#include <pMesh/io/adapter/DefaultWriteAdapter.h>
+#include <pMesh/io/writer/VTKWriter.h>
+#include <pMesh/io/writer/VFWriter.h>
 #include <fstream>
 #include <sstream>
 
