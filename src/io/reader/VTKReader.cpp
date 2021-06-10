@@ -8,7 +8,7 @@
  * ------------------------------------
 **/
 
-#include <pMesh/io/readers/VTKReader.h>
+#include <pMesh/io/reader/VTKReader.h>
 
 #include <vtkActor.h>
 #include <vtkNamedColors.h>

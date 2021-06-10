@@ -11,7 +11,7 @@
 #ifndef PMESH_CELLVERTICESORDERREGULATOR_IMPL
 #define PMESH_CELLVERTICESORDERREGULATOR_IMPL
 
-#include <pMesh/operators/CellVerticesOrderRegulator.h>
+#include <pMesh/operator/CellVerticesOrderRegulator.h>
 
 pMesh::CellVerticesOrderRegulator::CellVerticesOrderRegulator(bool reverse): reverse(reverse) {}
 

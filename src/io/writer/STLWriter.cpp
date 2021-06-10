@@ -8,7 +8,7 @@
  * ------------------------------------
 **/
 
-#include <pMesh/io/writers/STLWriter.h>
+#include <pMesh/io/writer/STLWriter.h>
 
 #include <vtkActor.h>
 #include <vtkNamedColors.h>

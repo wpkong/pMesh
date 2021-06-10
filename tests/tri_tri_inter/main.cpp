@@ -19,8 +19,8 @@
 //#include "tri_tri_intersection.h"
 //
 //#include <pMesh/core/SurfaceMesh.h>
-//#include <pMesh/io/adapters/DefaultReadAdapter.h>
-//#include <pMesh/io/readers/STLReader.h>
+//#include <pMesh/io/adapter/DefaultReadAdapter.h>
+//#include <pMesh/io/reader/STLReader.h>
 //
 //class BlockHalfEdgeReadAdapter : public pMesh::io::DefaultSurfaceReadAdapter<> {
 //public:

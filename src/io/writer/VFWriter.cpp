@@ -8,7 +8,7 @@
  * ------------------------------------
 **/
 
-#include <pMesh/io/writers/VFWriter.h>
+#include <pMesh/io/writer/VFWriter.h>
 #include <fstream>
 
 pMesh::io::VFWriter::VFWriter(const pMesh::io::fs_path &v_path, const pMesh::io::fs_path &f_path): v_path(v_path), f_path(f_path) {

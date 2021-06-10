@@ -8,7 +8,7 @@
  * ------------------------------------
 **/
 
-#include <pMesh/io/writers/VTKWriter.h>
+#include <pMesh/io/writer/VTKWriter.h>
 #include <pMesh/Numeric.h>
 
 pMesh::io::VTKWriter::VTKWriter(int type, const pMesh::io::fs_path &path) : type(type), path(path) {

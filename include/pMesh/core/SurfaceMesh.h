@@ -107,7 +107,7 @@ namespace pMesh {
         void compact_vertices();
 
         /**
-         * Split this mesh into separated meshes via its connectivity
+         * Split this mesh into separated mesh via its connectivity
          */
         std::vector<MeshType> split_into_meshes();
 

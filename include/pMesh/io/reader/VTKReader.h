@@ -11,7 +11,7 @@
 #ifndef PMESH_VTKREADER_H
 #define PMESH_VTKREADER_H
 
-#include <pMesh/io/readers/BaseReader.h>
+#include <pMesh/io/reader/BaseReader.h>
 
 namespace pMesh::io {
     class VTKReader: public BaseReader{

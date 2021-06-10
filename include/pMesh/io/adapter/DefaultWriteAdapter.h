@@ -11,7 +11,7 @@
 #ifndef PMESH_DEFAULTWRITERADAPTER_H
 #define PMESH_DEFAULTWRITERADAPTER_H
 
-#include <pMesh/io/adapters/WriteAdapter.h>
+#include <pMesh/io/adapter/WriteAdapter.h>
 #include <pMesh/core/SurfaceMesh.h>
 #include <pMesh/core/VolumeMesh.h>
 

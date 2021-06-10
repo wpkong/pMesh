@@ -33,7 +33,7 @@ namespace pMesh {
                                   Eigen::VectorXd y,
                                   const std::shared_ptr<RBF::kernel::kernel_function> kernel,
                                   double sigma = 0,
-                                  const RBF::LinearSolver::Solver &linear_solver = LinearSolver::LDLTSolver(true));
+                                  const RBF::LinearSolver::Solver &linear_solver = RBF::LinearSolver::LDLTSolver(true));
 
         RBFInterpolation(const RBFInterpolation &obj);
 

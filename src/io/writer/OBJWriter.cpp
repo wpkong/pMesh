@@ -8,7 +8,7 @@
  * ------------------------------------
 **/
 
-#include <pMesh/io/writers/OBJWriter.h>
+#include <pMesh/io/writer/OBJWriter.h>
 
 pMesh::io::OBJWriter::OBJWriter(const pMesh::io::fs_path &path): path(path) {}
 

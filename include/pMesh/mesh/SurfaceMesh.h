@@ -12,7 +12,7 @@
 #define PMESH_SURFACEMESH_H
 
 #include <pMesh/Common.h>
-#include <pMesh/core/Surface/Mesh.h>
+#include <pMesh/core/Mesh.h>
 
 namespace pMesh{
     template<int CellND, class HalfEdgeTrait=NullTrait,

@@ -11,15 +11,15 @@
 #ifndef PMESH_OBJWRITER_H
 #define PMESH_OBJWRITER_H
 
-#include <pMesh/io/writers/BaseWriter.h>
+#include <pMesh/io/writer/BaseWriter.h>
 
 
 namespace pMesh::io{
-    class STLWriter: public BaseWriter{
+    class OBJWriter: public BaseWriter{
     private:
         const fs_path path;
     public:
-        explicit STLWriter(const fs_path &path);
+        explicit OBJWriter(const fs_path &path);
 
         bool operator << (WriteAdapter &adapter) override;
     };

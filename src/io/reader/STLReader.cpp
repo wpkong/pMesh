@@ -9,7 +9,7 @@
 **/
 
 
-#include <pMesh/io/readers/STLReader.h>
+#include <pMesh/io/reader/STLReader.h>
 
 #include <vtkActor.h>
 #include <vtkNamedColors.h>

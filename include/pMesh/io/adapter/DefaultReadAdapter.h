@@ -11,7 +11,7 @@
 #ifndef PMESH_DEFAULTREADADAPTER_H
 #define PMESH_DEFAULTREADADAPTER_H
 
-#include <pMesh/io/adapters/ReadAdapter.h>
+#include <pMesh/io/adapter/ReadAdapter.h>
 #include <pMesh/core/SurfaceMesh.h>
 #include <pMesh/core/VolumeMesh.h>
 

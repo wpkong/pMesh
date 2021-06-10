@@ -12,7 +12,7 @@
 #define PMESH_VFREADER_H
 
 
-#include <pMesh/io/readers/BaseReader.h>
+#include <pMesh/io/reader/BaseReader.h>
 
 namespace pMesh::io {
     class VFReader: public BaseReader{

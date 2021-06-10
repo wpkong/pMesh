@@ -11,7 +11,7 @@
 #ifndef PMESH_OBJREADER_H
 #define PMESH_OBJREADER_H
 
-#include <pMesh/io/readers/BaseReader.h>
+#include <pMesh/io/reader/BaseReader.h>
 
 namespace pMesh::io {
     class STLReader: public BaseReader{

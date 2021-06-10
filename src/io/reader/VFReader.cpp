@@ -8,7 +8,7 @@
  * ------------------------------------
 **/
 
-#include <pMesh/io/readers/VFReader.h>
+#include <pMesh/io/reader/VFReader.h>
 #include <fstream>
 #include <sstream>
 

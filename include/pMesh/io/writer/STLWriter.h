@@ -8,24 +8,22 @@
  * ------------------------------------
 **/
 
-#ifndef PMESH_VTKWRITER_H
-#define PMESH_VTKWRITER_H
+#ifndef PMESH_OBJWRITER_H
+#define PMESH_OBJWRITER_H
 
-#include <pMesh/io/writers/BaseWriter.h>
+#include <pMesh/io/writer/BaseWriter.h>
 
 
 namespace pMesh::io{
-    class VTKWriter: public BaseWriter{
-        const double eps = 1e-9;
+    class STLWriter: public BaseWriter{
     private:
         const fs_path path;
-        const int type;
     public:
-        explicit VTKWriter(int type, const fs_path &path);
+        explicit STLWriter(const fs_path &path);
 
         bool operator << (WriteAdapter &adapter) override;
     };
 }
 
 
-#endif //PMESH_VTKWRITER_H
+#endif //PMESH_OBJWRITER_H

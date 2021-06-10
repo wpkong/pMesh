@@ -11,7 +11,7 @@
 #ifndef PMESH_HEXAHEDRONMESH_IMPL_H
 #define PMESH_HEXAHEDRONMESH_IMPL_H
 
-#include <pMesh/meshes/HexahedronMesh.h>
+#include <pMesh/mesh/HexahedronMesh.h>
 
 
 template<class VertexExtraData,

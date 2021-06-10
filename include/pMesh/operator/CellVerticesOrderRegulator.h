@@ -11,7 +11,7 @@
 #ifndef PMESH_CELLVERTICESORDERREGULATOR_H
 #define PMESH_CELLVERTICESORDERREGULATOR_H
 
-#include <pMesh/operators/Operator.h>
+#include <pMesh/operator/Operator.h>
 #include <pMesh/3d/TriangleMesh.h>
 
 namespace pMesh{

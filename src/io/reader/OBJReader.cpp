@@ -9,7 +9,7 @@
 **/
 
 
-#include <pMesh/io/readers/OBJReader.h>
+#include <pMesh/io/reader/OBJReader.h>
 
 #include <vtkActor.h>
 #include <vtkNamedColors.h>
