@@ -17,13 +17,14 @@
 namespace pMesh::io{
     class VTKWriter: public BaseWriter{
         const double eps = 1e-9;
-    private:
+    protected:
         const fs_path path;
+        std::ofstream out;
         const int type;
     public:
         explicit VTKWriter(int type, const fs_path &path);
 
-        bool operator << (WriteAdapter &adapter) override;
+        bool operator << (WriteAdapter &adapter);
     };
 }
 

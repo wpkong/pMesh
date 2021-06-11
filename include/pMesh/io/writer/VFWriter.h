@@ -16,9 +16,12 @@
 
 namespace pMesh::io{
     class VFWriter: public BaseWriter{
-    private:
+    protected:
         const fs_path v_path;
         const fs_path f_path;
+        std::ofstream vfs;
+        std::ofstream ffs;
+
     public:
         explicit VFWriter(const fs_path &v_path, const fs_path &f_path);
 

@@ -11,12 +11,11 @@
 #include <pMesh/io/writer/VTKWriter.h>
 #include <pMesh/Numeric.h>
 
-pMesh::io::VTKWriter::VTKWriter(int type, const pMesh::io::fs_path &path) : type(type), path(path) {
+pMesh::io::VTKWriter::VTKWriter(int type, const pMesh::io::fs_path &path) : type(type), path(path), out(path.c_str()) {
 
 }
 
 bool pMesh::io::VTKWriter::operator<<(pMesh::io::WriteAdapter &adapter) {
-    std::ofstream out(path.c_str());
     if (not out.is_open() or out.fail()) return false;
     adapter.start();
     out << "# vtk DataFile Version 3.0\n"
