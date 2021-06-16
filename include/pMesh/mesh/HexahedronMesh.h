@@ -28,6 +28,6 @@ namespace pMesh{
 
 }
 
-#include <pMesh/meshes/HexahedronMesh_impl.h>
+#include <pMesh/mesh/HexahedronMesh_impl.h>
 
 #endif //PMESH_HEXAHEDRONMESH_H
