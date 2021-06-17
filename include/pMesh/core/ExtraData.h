@@ -22,9 +22,6 @@
 #include <pMesh/core/FieldWrapper.h>
 
 namespace pMesh {
-    class NullExtraData {
-    };
-
     template<class Field>
     struct BaseFieldExtraData {
         explicit BaseFieldExtraData(const Field &field) {};
