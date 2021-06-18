@@ -41,9 +41,11 @@ boost::tuple<pMesh::Point3d, double> pMesh::bounding_sphere(const BasePointCloud
 
     std::vector<int> min_id(3, 0), max_id(3, 0);
 
+    std::vector<Point3d> permutation(v_size);
+
     for (int i = 0; i < v_size; ++i) {
-        const auto &vertex = pcm.vertices[i].attr.coordinate;
-        pcm.vertices[min_id[j]].attr.coordinate
+        permutation[i] = pcm.vertices[i].attr.coordinate;
+        const auto &vertex = permutation[i];
         for (unsigned j = 0; j < 3; ++j) {
             if (vertex[j] < permutation[min_id[j]][j])
                 min_id[j] = i;
@@ -108,7 +110,7 @@ boost::tuple<pMesh::Point3d, double> pMesh::bounding_sphere(const BasePointCloud
             best_radius = radius;
         }
 
-        radius *= SHRINKING_FACTOR;
+        radius *= factor;
     } while (num_iterations--);
 
     return boost::make_tuple(best_center, best_radius);
