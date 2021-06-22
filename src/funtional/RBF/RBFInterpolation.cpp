@@ -136,7 +136,7 @@ pMesh::RBFInterpolation::RBFInterpolation(Eigen::MatrixXd x,
     }
 }
 
-Eigen::MatrixXd pMesh::RBFInterpolation::eval(const Eigen::MatrixXd &x) {
+Eigen::MatrixXd pMesh::RBFInterpolation::eval(const Eigen::MatrixXd &x) const {
     if (kf == nullptr) {
         throw std::runtime_error("kernel function can not be null");
     }

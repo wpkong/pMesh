@@ -67,6 +67,7 @@ if(pMesh_BUILD_TEST)
     add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/tests/simplify_edges)
     add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/tests/tri_tri_inter)
     add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/tests/bounding_sphere)
+    add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/tests/rbf)
 endif()
 
 # tests
@@ -76,4 +77,5 @@ if(pMesh_BUILD_TEST)
     add_test(NAME simplify_edges COMMAND $<TARGET_FILE:simplify_edges>)
     add_test(NAME tri_tri_inter COMMAND $<TARGET_FILE:tri_tri_inter>)
     add_test(NAME bounding_sphere COMMAND $<TARGET_FILE:bounding_sphere>)
+    add_test(NAME rbf COMMAND $<TARGET_FILE:rbf>)
 endif()

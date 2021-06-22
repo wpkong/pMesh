@@ -39,7 +39,7 @@ namespace pMesh {
 
         RBFInterpolation() = default;
 
-        Eigen::MatrixXd eval(const Eigen::MatrixXd &x);
+        Eigen::MatrixXd eval(const Eigen::MatrixXd &x) const;
     };
 }
 
