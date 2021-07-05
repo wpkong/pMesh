@@ -14,6 +14,7 @@
 #include <pMesh/Common.h>
 #include <pMesh/mesh/TriangleMesh.h>
 #include <boost/tuple/tuple.hpp>
+#include <eigen3/unsupported/Eigen/CXX11/Tensor>
 #include <functional>
 
 namespace pMesh {
@@ -22,6 +23,7 @@ namespace pMesh {
     using Range = std::pair<double, double>;
     using Domain3d = boost::tuple<Range, Range, Range>;
     using Size3d = boost::tuple<double, double, double>;
+    using Tensor3d = Eigen::Tensor<double,3>;
 
     struct Cube {
         Point3d vertices[8];
@@ -31,7 +33,11 @@ namespace pMesh {
 
     Triangle3dMesh<> isosurface(
             signed_directional_field sdf, const Domain3d &domain, const Vector3d &size,
-            double level = 0, grad_func grad = nullptr);
+            double level = 0, grad_func grad = nullptr, bool compact_points = true);
+
+    Triangle3dMesh<> isosurface(
+            const Tensor3d &distance_field,
+            double level = 0, bool compact_points = true);
 }
 
 

@@ -75,6 +75,18 @@ namespace pMesh {
 
         Cell &cell(const CellHandle &handle) { return cells.at(handle.id()).attr; }
 
+        Vertex const &vertex(const VertexHandle &handle) const { return vertices.at(handle.id()).attr; };
+
+        HalfEdge const &half_edge(const HalfEdgeHandle &handle) const { return half_edges.at(handle.id()).attr; }
+
+        Edge const &edge(const EdgeHandle &handle) const { return edges.at(handle.id()).attr; }
+
+        HalfFace const &half_face(const HalfFaceHandle &handle) const { return half_faces.at(handle.id()).attr; }
+
+        Face const &face(const FaceHandle &handle) const { return faces.at(handle.id()).attr; }
+
+        Cell const &cell(const CellHandle &handle) const { return cells.at(handle.id()).attr; }
+
     public:
         VertexExtraData &vertex_data(const VertexHandle &handle) { return vertices.at(handle.id()).extra; };
 
@@ -87,6 +99,18 @@ namespace pMesh {
         FaceExtraData &face_data(const FaceHandle &handle) { return faces.at(handle.id()).extra; }
 
         CellExtraData &cell_data(const CellHandle &handle) { return cells.at(handle.id()).extra; }
+
+        VertexExtraData const &vertex_data(const VertexHandle &handle) const { return vertices.at(handle.id()).extra; };
+
+        HalfEdgeExtraData const &half_edge_data(const HalfEdgeHandle &handle) const { return half_edges.at(handle.id()).extra; }
+
+        EdgeExtraData const &edge_data(const EdgeHandle &handle) const { return edges.at(handle.id()).extra; }
+
+        HalfFaceExtraData const &half_face_data(const HalfFaceHandle &handle) const { return half_faces.at(handle.id()).extra; }
+
+        FaceExtraData const &face_data(const FaceHandle &handle) const { return faces.at(handle.id()).extra; }
+
+        CellExtraData const &cell_data(const CellHandle &handle) const { return cells.at(handle.id()).extra; }
 
     public:
         Vertex &attr(const VertexHandle &handle) { return vertices.at(handle.id()).attr; };
@@ -101,6 +125,18 @@ namespace pMesh {
 
         Cell &attr(const CellHandle &handle) { return cells.at(handle.id()).attr; }
 
+        Vertex const &attr(const VertexHandle &handle) const { return vertices.at(handle.id()).attr; };
+
+        HalfEdge const &attr(const HalfEdgeHandle &handle) const { return half_edges.at(handle.id()).attr; }
+
+        HalfFace const &attr(const HalfFaceHandle &handle) const { return half_faces.at(handle.id()).attr; }
+
+        Edge const &attr(const EdgeHandle &handle) const { return edges.at(handle.id()).attr; }
+
+        Face const &attr(const FaceHandle &handle) const { return faces.at(handle.id()).attr; }
+
+        Cell const &attr(const CellHandle &handle) const { return cells.at(handle.id()).attr; }
+
     public:
         VertexExtraData &data(const VertexHandle &handle) { return vertices.at(handle.id()).extra; }
 
@@ -113,6 +149,18 @@ namespace pMesh {
         FaceExtraData &data(const FaceHandle &handle) { return faces.at(handle.id()).extra; }
 
         CellExtraData &data(const CellHandle &handle) { return cells.at(handle.id()).extra; }
+
+        VertexExtraData const &data(const VertexHandle &handle) const { return vertices.at(handle.id()).extra; }
+
+        HalfEdgeExtraData const &data(const HalfEdgeHandle &handle) const { return half_edges.at(handle.id()).extra; }
+
+        HalfFaceExtraData const &data(const HalfFaceHandle &handle) const { return half_faces.at(handle.id()).extra; }
+
+        EdgeExtraData const &data(const EdgeHandle &handle) const { return edges.at(handle.id()).extra; }
+
+        FaceExtraData const &data(const FaceHandle &handle) const { return faces.at(handle.id()).extra; }
+
+        CellExtraData const &data(const CellHandle &handle) const { return cells.at(handle.id()).extra; }
 
     public:
         size_t v_size() const { return vertices.size(); }

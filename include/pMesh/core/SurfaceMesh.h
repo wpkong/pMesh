@@ -62,6 +62,14 @@ namespace pMesh {
 
         Face &face(const FaceHandle &handle) { return faces.at(handle.id()).attr; }
 
+        Vertex const &vertex(const VertexHandle &handle) const { return this->vertices.at(handle.id()).attr; };
+
+        HalfEdge const &half_edge(const HalfEdgeHandle &handle) const { return half_edges.at(handle.id()).attr; }
+
+        Edge const &edge(const EdgeHandle &handle) const { return edges.at(handle.id()).attr; }
+
+        Face const &face(const FaceHandle &handle) const { return faces.at(handle.id()).attr; }
+
     public:
         VertexExtraData &vertex_data(const VertexHandle &handle) { return this->vertices.at(handle.id()).extra; };
 
@@ -70,6 +78,14 @@ namespace pMesh {
         EdgeExtraData &edge_data(const EdgeHandle &handle) { return edges.at(handle.id()).extra; }
 
         FaceExtraData &face_data(const FaceHandle &handle) { return faces.at(handle.id()).extra; }
+
+        VertexExtraData const &vertex_data(const VertexHandle &handle) const { return this->vertices.at(handle.id()).extra; };
+
+        HalfEdgeExtraData const &half_edge_data(const HalfEdgeHandle &handle) const { return half_edges.at(handle.id()).extra; }
+
+        EdgeExtraData const &edge_data(const EdgeHandle &handle) const{ return edges.at(handle.id()).extra; }
+
+        FaceExtraData const &face_data(const FaceHandle &handle) const { return faces.at(handle.id()).extra; }
 
     public:
         Vertex &attr(const VertexHandle &handle) { return this->vertices.at(handle.id()).attr; };
@@ -80,6 +96,14 @@ namespace pMesh {
 
         Face &attr(const FaceHandle &handle) { return faces.at(handle.id()).attr; }
 
+        Vertex const &attr(const VertexHandle &handle) const { return this->vertices.at(handle.id()).attr; };
+
+        HalfEdge const &attr(const HalfEdgeHandle &handle) const { return half_edges.at(handle.id()).attr; }
+
+        Edge const &attr(const EdgeHandle &handle) const { return edges.at(handle.id()).attr; }
+
+        Face const &attr(const FaceHandle &handle) const { return faces.at(handle.id()).attr; }
+
     public:
         VertexExtraData &data(const VertexHandle &handle) { return this->vertices.at(handle.id()).extra; }
 
@@ -88,6 +112,14 @@ namespace pMesh {
         EdgeExtraData &data(const EdgeHandle &handle) { return edges.at(handle.id()).extra; }
 
         FaceExtraData &data(const FaceHandle &handle) { return faces.at(handle.id()).extra; }
+
+        VertexExtraData const &data(const VertexHandle &handle) const { return this->vertices.at(handle.id()).extra; }
+
+        HalfEdgeExtraData const &data(const HalfEdgeHandle &handle) const { return half_edges.at(handle.id()).extra; }
+
+        EdgeExtraData const &data(const EdgeHandle &handle) const { return edges.at(handle.id()).extra; }
+
+        FaceExtraData const &data(const FaceHandle &handle) const { return faces.at(handle.id()).extra; }
 
     public:
         size_t v_size() const { return this->vertices.size(); }

@@ -11,6 +11,7 @@
 #ifndef PMESH_TETRAHEDRONMESH_H
 #define PMESH_TETRAHEDRONMESH_H
 #include <pMesh/core/VolumeMesh.h>
+#include <pMesh/mesh/TriangleMesh.h>
 
 namespace pMesh{
     template<class VertexExtraData=Volume::BaseVertexExtraData,
@@ -21,7 +22,8 @@ namespace pMesh{
             class CellExtraData = Volume::BaseCellExtraData
     >
     class TetrahedronMesh: public VolumeMesh<VertexExtraData, HalfEdgeExtraData, EdgeExtraData, HalfFaceExtraData, FaceExtraData, CellExtraData>{
-
+    public:
+        void build_half_face_structure(){}
     };
 }
 

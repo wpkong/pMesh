@@ -31,7 +31,7 @@ namespace pMesh {
 
 pMesh::Triangle3dMesh<> pMesh::isosurface(
         signed_directional_field sdf, const Domain3d &domain, const Vector3d &size,
-        double level, grad_func grad) {
+        double level, grad_func grad, bool compact_points) {
     pMesh::Triangle3dMesh<> mesh;
     if(grad == nullptr){
         grad = [sdf](auto && PH1) { return default_grad(sdf, std::forward<decltype(PH1)>(PH1), 1e-6); };
